@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="พอร์ทัลนักเรียน · ผลการเรียน เวลาเรียน ความประพฤติ และเอกสารทางการศึกษา">
+  <title>พอร์ทัลนักเรียน · ระบบบริหารจัดการสถานศึกษา</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SMS โรงเรียน">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="SMS โรงเรียน">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/itim-thai.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/itim-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=3.9.10">
+  <link rel="stylesheet" href="css/portal.css?v=3.9.10">
+  <link rel="stylesheet" href="css/schedule.css?v=3.9.10">
+</head>
+<body class="student-page">
+
+  <header class="top-school-header student-topbar">
+    <div class="top-header-inner">
+      <a class="school-brand" href="#" id="brandHome">
+        <span class="school-mascot-badge" data-school-logo></span>
+        <span class="school-brand-title">
+          <span class="school-brand-name" data-school-name>ระบบบริหารจัดการสถานศึกษา</span>
+          <span class="school-brand-sub">พอร์ทัลนักเรียน · ผู้ปกครอง</span>
+        </span>
+      </a>
+      <nav class="top-header-nav" aria-label="เมนูหลัก">
+        <a href="index.html" class="nav-pill-btn ghost" title="กลับหน้าเข้าสู่ระบบ">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          <span>หน้าแรก</span>
+        </a>
+        <a href="club-community.html" class="nav-pill-btn" title="ชุมนุมและกิจกรรม">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>ชุมนุม</span>
+        </a>
+        <a href="#" class="nav-pill-btn active" id="topPrintBook" target="_blank" title="พิมพ์สมุดรายงาน">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          <span>พิมพ์สมุดรายงาน</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="student-shell" id="studentApp">
+    <!-- ================= Hero ================= -->
+    <section class="student-hero">
+      <div class="student-hero-main">
+        <div class="student-avatar-xl" id="studentAvatar">?</div>
+        <div class="student-identity">
+          <div class="student-eyebrow">Student Portfolio</div>
+          <h1 class="student-name-lg" id="studentName">กำลังโหลดข้อมูล…</h1>
+          <div class="student-meta" id="studentMeta"></div>
+        </div>
+      </div>
+      <div class="student-hero-stats" id="heroStats"></div>
+      <div class="student-hero-actions" style="grid-column:1/-1">
+        <a class="btn primary" id="heroPP1" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8"/></svg>
+          ระเบียนผลการเรียน ปพ.1
+        </a>
+        <a class="btn" id="heroPP7" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+          ใบรับรองผลการศึกษา ปพ.7
+        </a>
+        <a class="btn" id="heroAttendance" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          รายงานเวลาเรียน
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= Tabs ================= -->
+    <nav class="student-tabs" role="tablist" aria-label="ข้อมูลนักเรียน">
+      <button type="button" class="student-tab active" data-tab="overview" role="tab" aria-selected="true">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        <span class="lbl">ภาพรวม</span>
+      </button>
+      <button type="button" class="student-tab" data-tab="grades" role="tab" aria-selected="false">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 2 2.5 3 6 3s6-1 6-3v-5"/></svg>
+        <span class="lbl">ผลการเรียน</span>
+      </button>
+      <button type="button" class="student-tab" data-tab="attendance" role="tab" aria-selected="false">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
+        <span class="lbl">เวลาเรียน</span>
+      </button>
+      <button type="button" class="student-tab" data-tab="schedule" role="tab" aria-selected="false">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 13h4M7 17h10"/></svg>
+        <span class="lbl">ตารางเรียน</span>
+      </button>
+      <button type="button" class="student-tab" data-tab="development" role="tab" aria-selected="false">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M5 8h14"/><path d="M7 8v6a5 5 0 0 0 10 0V8"/></svg>
+        <span class="lbl">พัฒนาการ</span>
+      </button>
+      <button type="button" class="student-tab" data-tab="clubs" role="tab" aria-selected="false">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="lbl">ชุมนุม</span>
+      </button>
+      <button type="button" class="student-tab" data-tab="documents" role="tab" aria-selected="false">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+        <span class="lbl">เอกสาร ปพ.</span>
+      </button>
+    </nav>
+
+    <!-- ================= Overview ================= -->
+    <section class="student-panel active" id="panel-overview" role="tabpanel">
+      <div class="mini-stat-grid" id="overviewStats"></div>
+
+      <div class="student-grid side mt-16">
+        <div class="student-card">
+          <div class="student-card-head">
+            <h3><span class="sc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> ข้อมูลส่วนตัว</h3>
+            <span class="badge badge-studying" id="studentStatusBadge">กำลังศึกษาอยู่</span>
+          </div>
+          <div class="student-card-body">
+            <dl class="profile-list" id="profileList"></dl>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-card-head">
+            <h3><span class="sc-ico green"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span> เวลาเรียนภาคเรียนนี้</h3>
+            <span class="head-sub" id="overviewAttTerm">—</span>
+          </div>
+          <div class="student-card-body">
+            <div class="att-ring-wrap">
+              <div class="att-ring" id="overviewRing" style="--p:0;--ring-color:#10b981">
+                <div class="att-ring-inner"><b id="overviewRingValue">0%</b><span>อัตรามาเรียน</span></div>
+              </div>
+              <div class="att-legend" id="overviewAttLegend"></div>
+            </div>
+          </div>
+          <div class="student-card-foot">
+            <a class="btn btn-soft-green btn-sm w-full" id="overviewAttLink" target="_blank">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              ดูรายงานเวลาเรียนฉบับเต็ม
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="student-grid side mt-16">
+        <div class="student-card">
+          <div class="student-card-head">
+            <h3><span class="sc-ico violet"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 2 2.5 3 6 3s6-1 6-3v-5"/></svg></span> ผลการเรียนล่าสุด</h3>
+            <button type="button" class="btn btn-ghost btn-sm" data-go-tab="grades">ดูทั้งหมด →</button>
+          </div>
+          <div class="student-card-body flush">
+            <div class="table-container" style="border:none;box-shadow:none;border-radius:0">
+              <table class="subject-table" id="overviewGrades"></table>
+            </div>
+          </div>
+          <div class="student-card-foot" id="overviewActivityFoot"></div>
+        </div>
+
+        <div class="student-grid" style="align-content:start">
+          <div class="student-card">
+            <div class="student-card-head">
+              <h3><span class="sc-ico amber"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span> ความคิดเห็นครูประจำชั้น</h3>
+            </div>
+            <div class="student-card-body">
+              <div class="teacher-comment" id="overviewComment"></div>
+            </div>
+          </div>
+          <div class="student-card" id="overviewClubCardWrap">
+            <div class="student-card-head">
+              <h3><span class="sc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> ชุมนุมที่ลงทะเบียน</h3>
+            </div>
+            <div class="student-card-body" id="overviewClub"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Grades ================= -->
+    <section class="student-panel" id="panel-grades" role="tabpanel">
+      <div class="student-card">
+        <div class="student-card-head">
+          <div>
+            <h3><span class="sc-ico violet"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 2 2.5 3 6 3s6-1 6-3v-5"/></svg></span> ผลการเรียนรายภาคเรียน</h3>
+            <div class="head-sub" id="gradesHeadSub">—</div>
+          </div>
+          <div class="term-toolbar">
+            <div class="term-pill-wrap" id="termPills" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+            <a class="btn btn-outline btn-sm" id="gradesPrintPP1" target="_blank">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              พิมพ์ ปพ.1
+            </a>
+          </div>
+        </div>
+        <div class="student-card-body flush">
+          <div class="table-container" style="border:none;box-shadow:none;border-radius:0;overflow-x:auto">
+            <table class="subject-table" id="gradesTable"></table>
+          </div>
+        </div>
+        <div class="student-card-foot" id="gradesSummaryFoot"></div>
+      </div>
+
+      <div class="student-card mt-16 actdev-grades-card">
+        <div class="student-card-head">
+          <div>
+            <h3><span class="sc-ico amber"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg></span> กิจกรรมพัฒนาผู้เรียน</h3>
+            <div class="head-sub" id="gradesActivitySub">ชุมนุม · แนะแนว · จิตสาธารณะ · ลูกเสือ/เนตรนารี</div>
+          </div>
+          <span class="head-sub" id="gradesActivityOverall">—</span>
+        </div>
+        <div class="student-card-body" id="gradesActivityBody"></div>
+      </div>
+
+      <div class="student-grid cols-2 mt-16">
+        <div class="student-card">
+          <div class="student-card-head">
+            <h3><span class="sc-ico green"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-6"/></svg></span> ผลการเรียนสะสม</h3>
+          </div>
+          <div class="student-card-body" id="cumulativeCard"></div>
+        </div>
+        <div class="student-card">
+          <div class="student-card-head">
+            <h3><span class="sc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8"/></svg></span> สรุปผลรายภาคเรียน</h3>
+          </div>
+          <div class="student-card-body flush">
+            <div class="table-container" style="border:none;box-shadow:none;border-radius:0">
+              <table class="subject-table" id="transcriptTable"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Attendance ================= -->
+    <section class="student-panel" id="panel-attendance" role="tabpanel">
+      <div class="mini-stat-grid" id="attendanceStats"></div>
+
+      <div class="student-card mt-16">
+        <div class="student-card-head">
+          <h3><span class="sc-ico green"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> เช็คชื่อวันนี้</h3>
+          <span class="head-sub" id="todayAttSub">—</span>
+        </div>
+        <div class="student-card-body" id="todayAttendance"></div>
+      </div>
+
+      <div class="student-grid side mt-16">
+        <div class="student-card">
+          <div class="student-card-head">
+            <h3><span class="sc-ico green"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-6"/></svg></span> แนวโน้มการมาเรียนรายเดือน</h3>
+            <a class="btn btn-soft-green btn-sm" id="attPrintBtn" target="_blank">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              พิมพ์รายงาน
+            </a>
+          </div>
+          <div class="student-card-body" id="attendanceMonthly"></div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-card-head">
+            <h3><span class="sc-ico amber"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span> สรุปสถานะ</h3>
+          </div>
+          <div class="student-card-body" id="attendanceStatusSummary"></div>
+        </div>
+      </div>
+
+      <div class="student-card mt-16">
+        <div class="student-card-head">
+          <h3><span class="sc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span> ประวัติการเช็คชื่อล่าสุด</h3>
+          <span class="head-sub" id="attendanceHistorySub">—</span>
+        </div>
+        <div class="student-card-body">
+          <div class="attendance-history" id="attendanceHistory"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Schedule (ตารางเรียน) ================= -->
+    <section class="student-panel" id="panel-schedule" role="tabpanel">
+      <div class="student-card">
+        <div class="student-card-head">
+          <h3><span class="sc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 13h4M7 17h10"/></svg></span> ตารางเรียนรายสัปดาห์</h3>
+          <div class="flex items-center gap-8">
+            <span class="head-sub" id="scheduleSub">—</span>
+            <a class="btn btn-outline btn-sm" id="schedulePrint" target="_blank" rel="noopener">พิมพ์</a>
+          </div>
+        </div>
+        <div class="student-card-body">
+          <div class="stu-sched-bar" id="scheduleBar"></div>
+          <div class="stu-sched-wrap" id="scheduleGrid"></div>
+          <div class="stu-sched-legend" id="scheduleLegend"></div>
+        </div>
+      </div>
+
+      <div class="stu-sched-note" id="scheduleNote"></div>
+    </section>
+
+    <!-- ================= Development ================= -->
+    <section class="student-panel" id="panel-development" role="tabpanel">
+      <div class="student-grid side">
+        <div class="student-card">
+          <div class="student-card-head">
+            <h3><span class="sc-ico green"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span> คะแนนความประพฤติ</h3>
+            <a class="btn btn-outline btn-sm" id="devPrintPP4" target="_blank">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              พิมพ์ ปพ.4
+            </a>
+          </div>
+          <div class="student-card-body" id="behaviorCard"></div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-card-head">
+            <h3><span class="sc-ico rose"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg></span> คุณลักษณะอันพึงประสงค์</h3>
+            <span class="head-sub" id="charOverall">—</span>
+          </div>
+          <div class="student-card-body" id="characteristicsCard"></div>
+        </div>
+      </div>
+
+      <div class="student-grid side mt-16">
+        <div class="student-card">
+          <div class="student-card-head">
+            <h3><span class="sc-ico violet"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M5 8h14"/><path d="M7 8v6a5 5 0 0 0 10 0V8"/></svg></span> สมรรถนะสำคัญของผู้เรียน</h3>
+          </div>
+          <div class="student-card-body" id="competenciesCard"></div>
+        </div>
+        <div class="student-card">
+          <div class="student-card-head">
+            <h3><span class="sc-ico amber"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span> ความคิดเห็นและข้อเสนอแนะ</h3>
+          </div>
+          <div class="student-card-body" id="developmentComment"></div>
+        </div>
+      </div>
+
+      <div class="student-card mt-16">
+        <div class="student-card-head">
+          <div>
+            <h3><span class="sc-ico cyan"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a2 2 0 0 1 2-2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg></span> กิจกรรมพัฒนาผู้เรียน (ผ./มผ.)</h3>
+            <div class="head-sub">ชุมนุม · แนะแนว · จิตสาธารณะ · ลูกเสือ/เนตรนารี/ยุวกาชาด/ผู้บำเพ็ญประโยชน์/นศท.</div>
+          </div>
+          <span class="head-sub" id="activityDevOverall">—</span>
+        </div>
+        <div class="student-card-body" id="activityDevCard"></div>
+      </div>
+    </section>
+
+    <!-- ================= Clubs ================= -->
+    <section class="student-panel" id="panel-clubs" role="tabpanel">
+      <div class="student-card" id="myClubCard">
+        <div class="student-card-head">
+          <div>
+            <h3><span class="sc-ico violet"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> ชุมนุมของฉัน</h3>
+            <div class="head-sub">เลือก เปลี่ยน หรือยกเลิกชุมนุมได้เอง หากระบบยังไม่เต็ม</div>
+          </div>
+        </div>
+        <div class="student-card-body" id="myClubBody"></div>
+      </div>
+
+      <div class="student-card mt-16">
+        <div class="student-card-head">
+          <div>
+            <h3><span class="sc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span> เลือกชุมนุมที่สนใจ</h3>
+            <div class="head-sub" id="clubListSub">กำลังโหลดรายการชุมนุม…</div>
+          </div>
+          <a class="btn btn-outline btn-sm" href="club-community.html" target="_blank">หน้าชุมชนชุมนุม</a>
+        </div>
+        <div class="student-card-body">
+          <div class="club-pick-grid" id="clubPickGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Documents ================= -->
+    <section class="student-panel" id="panel-documents" role="tabpanel">
+      <div class="student-card">
+        <div class="student-card-head">
+          <div>
+            <h3><span class="sc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8"/></svg></span> เอกสารทางการศึกษา ปพ.1 – ปพ.9</h3>
+            <div class="head-sub">ดูตัวอย่างและพิมพ์เอกสารได้ทันที · รองรับกระดาษ A4</div>
+          </div>
+        </div>
+        <div class="student-card-body">
+          <div class="doc-grid-student" id="documentGrid"></div>
+        </div>
+      </div>
+
+      <div class="student-card mt-16">
+        <div class="student-card-head">
+          <h3><span class="sc-ico green"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></span> ประวัติการออกเอกสารของฉัน</h3>
+          <span class="head-sub" id="docHistoryCount">—</span>
+        </div>
+        <div class="student-card-body">
+          <div class="doc-history-list" id="docHistoryList"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="student-footer">
+    <span data-school-name>ระบบบริหารจัดการสถานศึกษา</span> · พอร์ทัลนักเรียน · ข้อมูลอัปเดตอัตโนมัติจากระบบทะเบียน
+  </footer>
+
+  <script src="js/data.js?v=3.9.10"></script>
+  <script src="js/modal.js?v=3.9.10"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      const store = window.smsStore;
+      const C = window.SMS_CONST;
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const esc = (v) => String(v === undefined || v === null ? '' : v)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      const n = (v) => Number(v) || 0;
+      const pct = (v) => (Math.round(n(v) * 10) / 10).toFixed(1);
+      const studentName = (s) => ((s.prefix || '') + s.firstname + ' ' + s.lastname).trim();
+      const classOf = (s) => s.className || ((s.levelShort || '') + '/' + (s.room || ''));
+      const thaiDate = (iso, opts) => C.formatThaiDate(iso, opts || {});
+      const thaiDateTime = (v) => C.formatThaiDateTime(v);
+
+      const info = store.getSchoolInfo();
+      document.querySelectorAll('[data-school-name]').forEach((el) => { el.textContent = info.name || 'ระบบบริหารจัดการสถานศึกษา'; });
+      document.querySelectorAll('[data-school-logo]').forEach((el) => { el.innerHTML = info.logo || ''; });
+
+      /* ------------------------ resolve student ------------------------ */
+      const params = new URLSearchParams(location.search);
+      let sid = params.get('id');
+      if (!sid) {
+        try {
+          const sess = JSON.parse(localStorage.getItem('sms_student_session_v3') || 'null');
+          if (sess && sess.id) sid = sess.id;
+        } catch (err) { /* ignore */ }
+      }
+      let student = store.getStudentById(sid);
+      if (!student) student = store.getAllStudents()[0] || null;
+
+      if (!student) {
+        $('#studentApp').innerHTML = '<div class="student-card"><div class="student-card-body"><div class="empty-mini">ไม่พบข้อมูลนักเรียนในระบบ กรุณากลับไปเลือกนักเรียนจากหน้าแรก</div></div></div>';
+        return;
+      }
+
+      try {
+        localStorage.setItem('sms_student_session_v3', JSON.stringify({
+          id: student.id, name: studentName(student), className: classOf(student), loginAt: new Date().toISOString()
+        }));
+      } catch (err) { /* ignore */ }
+
+      const ctx = store.getAcademicContext();
+      const termKeys = store.getStudentTermKeys(student);
+      const transcript = store.getTranscript(student);
+      const latestRecordedKey = (() => {
+        const withScores = transcript.filter((t) => t.subjects.some((sub) => sub.score !== null && sub.score !== undefined && sub.score !== ''));
+        if (withScores.length) return withScores[withScores.length - 1].key;
+        return termKeys.length ? termKeys[termKeys.length - 1] : ctx.year + '-' + ctx.semester;
+      })();
+      let activeTermKey = termKeys.indexOf(ctx.year + '-' + ctx.semester) >= 0 ? ctx.year + '-' + ctx.semester : latestRecordedKey;
+      if (!activeTermKey) activeTermKey = ctx.year + '-' + ctx.semester;
+      const attCtx = store.resolveTermForDate(store.getDefaultAttendanceDate());
+      const att = store.getStudentAttendance(student.id, attCtx.year, attCtx.term) || {
+        totals: { present: 0, late: 0, sick: 0, business: 0, absent: 0, truant: 0, total: 0, percent: 0 },
+        monthly: [], records: []
+      };
+      const gpaX = store.getCumulativeGPA(student);
+      const totalCredits = store.getTotalCredits(student);
+
+      function gradeInfo(score) {
+        if (score === null || score === undefined || score === '' || score === 'รอประเมิน') return { grade: 'รอประเมิน', gpaVal: null, isPassed: null, color: '#d97706' };
+        if (typeof score === 'string') {
+          const s = score.trim();
+          if (s === 'รอประเมิน') return { grade: 'รอประเมิน', gpaVal: null, isPassed: null, color: '#d97706' };
+          if (s === 'ร') return { grade: 'ร', gpaVal: 0, isPassed: false, color: '#b45309' };
+          if (s === 'มผ' || s === 'มผ.') return { grade: 'มผ.', gpaVal: 0, isPassed: false, color: '#be123c' };
+          if (s === 'ผ่าน' || s === 'ผ' || s === 'ผ.') return { grade: 'ผ.', gpaVal: null, isPassed: true, color: '#047857' };
+          if (s === 'ไม่ผ่าน') return { grade: 'มผ.', gpaVal: 0, isPassed: false, color: '#be123c' };
+          const parsed = Number(s);
+          if (s === '' || isNaN(parsed)) return { grade: s, gpaVal: null, isPassed: null, color: '#64748b' };
+          score = parsed;
+        }
+        const v = Number(score);
+        const row = C.GRADE_SCALE.find((r) => v >= r.min);
+        if (row) return { grade: row.grade, gpaVal: row.gpa, isPassed: true, color: row.color };
+        return { grade: '0', gpaVal: 0, isPassed: false, color: '#be123c' };
+      }
+      function gradeChip(score) {
+        const g = gradeInfo(score);
+        return '<span class="grade-chip" style="background:' + g.color + '14;color:' + g.color + ';border:1px solid ' + g.color + '45">' + esc(g.grade) + '</span>';
+      }
+
+      /* ------------------ กิจกรรมพัฒนาผู้เรียน (ผ./มผ.) ------------------ */
+      const ACT_PASS_PCT = typeof SMS_ACTIVITY_PASS_PERCENT !== 'undefined' ? SMS_ACTIVITY_PASS_PERCENT : 80;
+      const ACT_ICONS = {
+        club: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+        guidance: '<circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12Z"/>',
+        social: '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/>',
+        scout: '<path d="M4 22V4a2 2 0 0 1 2-2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/>'
+      };
+      const ACT_TONE_LABEL = { pass: 'ผ. ผ่าน', wait: 'รออนุมัติ', fail: 'มผ. ไม่ผ่าน', pending: 'รอประเมิน' };
+      function actIcon(key) {
+        return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (ACT_ICONS[key] || ACT_ICONS.club) + '</svg>';
+      }
+      function actTone(act) {
+        if (!act || !act.result) return 'pending';
+        if (act.result === 'ผ.') return 'pass';
+        return act.percent >= ACT_PASS_PCT ? 'wait' : 'fail';
+      }
+      function actNote(act, tone) {
+        if (tone === 'pass') {
+          return (act.remedial || []).some((r) => r.status === 'อนุมัติแล้ว')
+            ? 'ซ่อมเสริมแล้ว · อนุมัติผลเรียบร้อย'
+            : 'ผ่านเกณฑ์เวลาและได้รับการประเมินแล้ว';
+        }
+        if (tone === 'wait') return 'ผ่านเกณฑ์เวลาแล้ว · รอการอนุมัติผล';
+        if (tone === 'fail') return act.note || ('ต้องเข้ารับการซ่อมเสริมให้ครบ ' + ACT_PASS_PCT + '%');
+        return act.note || 'ยังไม่บันทึกผลการประเมิน';
+      }
+      function activityCardsHTML(list, opts) {
+        const o = opts || {};
+        const counts = { pass: 0, wait: 0, fail: 0, pending: 0 };
+        list.forEach((a) => { counts[actTone(a)] += 1; });
+        const done = counts.pass;
+        const total = list.length;
+        const percent = total ? Math.round((done / total) * 100) : 0;
+        const donutTone = counts.fail ? '#e11d48' : counts.wait ? '#d97706' : counts.pending ? '#64748b' : '#059669';
+        const summary = '<div class="actdev-sum">' +
+          '<div class="actdev-donut" style="--pct:' + percent + ';--tone:' + donutTone + '">' +
+            '<div class="actdev-donut-in"><b>' + percent + '%</b><span>ผ่านแล้ว</span></div>' +
+          '</div>' +
+          '<div class="actdev-sum-main">' +
+            '<h4>ผ่าน ' + done + ' จาก ' + total + ' กิจกรรม</h4>' +
+            '<p>' + esc(o.subtitle || 'ชุมนุม · แนะแนว · จิตสาธารณะ · ลูกเสือ/เนตรนารี') + '</p>' +
+            '<div class="actdev-sum-chips">' +
+              '<span class="actdev-sum-chip pass">ผ. ผ่าน ' + counts.pass + '</span>' +
+              '<span class="actdev-sum-chip fail">มผ. ไม่ผ่าน ' + counts.fail + '</span>' +
+              '<span class="actdev-sum-chip wait">รออนุมัติ ' + counts.wait + '</span>' +
+              '<span class="actdev-sum-chip pending">รอประเมิน ' + counts.pending + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+        const cards = '<div class="actdev-cards">' + list.map((a) => {
+          const t = actTone(a);
+          const note = actNote(a, t);
+          return '<div class="actdev-card ' + t + '">' +
+            '<div class="actdev-card-top">' +
+              '<span class="actdev-ico">' + actIcon(a.key) + '</span>' +
+              '<div class="actdev-card-title"><b>' + esc(a.name) + '</b><small>' + esc(a.totalHours) + ' ชั่วโมง / ภาคเรียน</small></div>' +
+              '<span class="actdev-badge ' + t + '">' + esc(ACT_TONE_LABEL[t]) + '</span>' +
+            '</div>' +
+            '<div class="actdev-card-bar"><div class="actdev-card-track"><span style="width:' + Math.min(100, a.percent) + '%"></span></div><b>' + esc(a.percent) + '%</b></div>' +
+            '<div class="actdev-card-meta"><span>เข้าร่วม ' + esc(a.attendedHours) + ' / ' + esc(a.totalHours) + ' ชั่วโมง</span>' +
+              '<span class="actdev-mini-chip ' + t + '">' + (t === 'pass' ? 'ผ่าน' : t === 'wait' ? 'รออนุมัติ' : t === 'fail' ? 'ไม่ผ่าน' : 'รอประเมิน') + '</span></div>' +
+            '<div class="actdev-note ' + t + '">' + esc(note) + '</div>' +
+          '</div>';
+        }).join('') + '</div>';
+        const rule = '<div class="actdev-rule">' +
+          '<b>เกณฑ์ผ่าน</b> ต้องมีเวลาเข้าร่วมกิจกรรมไม่น้อยกว่า ' + ACT_PASS_PCT + '% ของเวลาทั้งหมด และผลการประเมินต้องเป็น “ผ.” เท่านั้น · กรณีได้ “มผ.” ต้องเข้ารับการซ่อมเสริมและได้รับการอนุมัติจากสถานศึกษา' +
+        '</div>';
+        return summary + cards + rule;
+      }
+      function statusMeta(status) {
+        return C.ATTENDANCE_STATUSES[status] || C.ATTENDANCE_STATUSES.present;
+      }
+      function statusPill(status) {
+        const st = statusMeta(status);
+        return '<span class="att-pill ' + st.code + '"><i></i>' + esc(st.label) + '</span>';
+      }
+      function printUrl(type, extra) {
+        const opts = extra || {};
+        const p = new URLSearchParams({
+          type: type, id: student.id,
+          year: String(opts.year || ctx.year),
+          term: String(opts.term || ctx.semester)
+        });
+        Object.keys(opts).forEach((k) => {
+          if (opts[k] !== undefined && opts[k] !== null && opts[k] !== '') p.set(k, opts[k]);
+        });
+        return 'print.html?' + p.toString();
+      }
+      function docIcon(name) {
+        const paths = {
+          file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/>',
+          award: '<circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/>',
+          chart: '<path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-6"/>',
+          book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>',
+          shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/>',
+          check: '<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>'
+        };
+        return '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (paths[name] || paths.file) + '</svg>';
+      }
+
+      /* ------------------------ identity & hero ------------------------ */
+      const currentSum = store.summarizeStudent(student, activeTermKey.split('-')[0], activeTermKey.split('-')[1]);
+      const contextTermData = store.getTermData(student, activeTermKey.split('-')[0], activeTermKey.split('-')[1]);
+      const behavior = Object.assign({ currentScore: 100, history: [] }, contextTermData.behavior || {});
+      /* คะแนนความประพฤติ = 100 (เริ่มต้น) + ผลรวมที่ครูบันทึก · ไม่จำกัดเพดาน บวกเกิน 100 / ลบติดลบได้ */
+      const behRecords = store.getBehaviors().filter((b) => b.studentId === student.id);
+      const behDelta = behRecords.reduce((a, b) => a + (Number(b.score) || 0), 0);
+      behavior.currentScore = 100 + behDelta;
+      behavior.delta = behDelta;
+      behavior.history = (behavior.history || []).slice().map((h) => Object.assign({}, h));
+      let behAnchor = behavior.currentScore;
+      behavior.history.forEach((h) => { h.after = behAnchor; h.before = behAnchor - (Number(h.change) || 0); behAnchor = h.before; });
+      document.title = studentName(student) + ' · พอร์ทัลนักเรียน';
+      $('#studentAvatar').textContent = String(student.firstname || '?').charAt(0);
+      $('#studentName').textContent = studentName(student);
+      $('#studentStatusBadge').textContent = student.status || 'กำลังศึกษาอยู่';
+      $('#studentMeta').innerHTML =
+        '<span class="meta-chip chip-class">' + esc(classOf(student)) + '</span>' +
+        '<span class="meta-chip chip-id">เลขที่ ' + esc(student.studentNumber || student.id) + '</span>' +
+        '<span class="meta-chip">' + esc(student.level || '') + '</span>' +
+        '<span class="meta-chip">' + esc(C.formatThaiDate(new Date().toISOString().slice(0, 10))) + '</span>';
+
+      $('#heroStats').innerHTML = [
+        ['GPAX สะสม', gpaX, ''],
+        ['GPA ภาคเรียน', currentSum.gpa, ''],
+        ['อัตรามาเรียน', pct(att.totals.percent) + '<small>%</small>', ''],
+        ['ความประพฤติ', String(behavior.currentScore), '<small>คะแนน</small>']
+      ].map((it) => '<div class="student-hero-stat"><span>' + it[0] + '</span><b>' + it[1] + (it[2] || '') + '</b></div>').join('');
+
+      $('#heroPP1').href = printUrl('pp1');
+      $('#heroPP7').href = printUrl('pp7');
+      $('#heroAttendance').href = printUrl('attendance-student', { year: attCtx.year, term: attCtx.term });
+      $('#topPrintBook').href = printUrl('pp6');
+      $('#brandHome').href = 'student.html?id=' + encodeURIComponent(student.id);
+
+      /* ------------------------ tabs ------------------------ */
+      const panels = { overview: $('#panel-overview'), grades: $('#panel-grades'), attendance: $('#panel-attendance'), schedule: $('#panel-schedule'), development: $('#panel-development'), clubs: $('#panel-clubs'), documents: $('#panel-documents') };
+      const tabButtons = $$('.student-tab');
+      function switchTab(name, updateHash) {
+        const key = panels[name] ? name : 'overview';
+        tabButtons.forEach((b) => {
+          const active = b.getAttribute('data-tab') === key;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', String(active));
+        });
+        Object.keys(panels).forEach((k) => panels[k].classList.toggle('active', k === key));
+        if (updateHash !== false) {
+          try { history.replaceState(null, '', '#' + key); } catch (err) { /* ignore */ }
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      tabButtons.forEach((b) => b.addEventListener('click', () => switchTab(b.getAttribute('data-tab'))));
+      $$('[data-go-tab]').forEach((b) => b.addEventListener('click', () => switchTab(b.getAttribute('data-go-tab'))));
+      const initialTab = (location.hash || '').replace('#', '');
+      if (initialTab && panels[initialTab]) switchTab(initialTab, false);
+
+      /* ------------------------ overview ------------------------ */
+      $('#overviewStats').innerHTML = [
+        { label: 'ผลการเรียนเฉลี่ยสะสม', value: gpaX, unit: '', color: '#4f46e5' },
+        { label: 'GPA ภาคเรียนปัจจุบัน', value: currentSum.gpa, unit: '', color: '#7c3aed' },
+        { label: 'อัตรามาเรียน', value: pct(att.totals.percent), unit: '%', color: '#059669' },
+        { label: 'ความประพฤติ', value: String(behavior.currentScore), unit: 'คะแนน', color: Number(behavior.currentScore) >= 80 ? '#0891b2' : '#e11d48' }
+      ].map((s) => '<div class="mini-stat" style="--ms-color:' + s.color + '"><span>' + s.label + '</span><b>' + s.value + (s.unit ? '<small>' + s.unit + '</small>' : '') + '</b></div>').join('');
+
+      $('#profileList').innerHTML = [
+        ['ชื่อ-สกุล', studentName(student), true],
+        ['วันเกิด', student.birthDate || '-'],
+        ['เพศ', student.gender === 'male' ? 'ชาย' : 'หญิง'],
+        ['เลขบัตรประชาชน', student.citizenId || '-'],
+        ['ศาสนา', student.religion || '-'],
+        ['กรุ๊ปเลือด', student.bloodType || '-'],
+        ['ที่อยู่', student.address || '-', true],
+        ['ผู้ปกครอง', (student.parentName || '-') + (student.parentRelation ? ' (' + student.parentRelation + ')' : '')],
+        ['โทรศัพท์', student.parentPhone || student.guardianPhone || '-'],
+        ['วันเข้าศึกษา', student.admissionDate || '-']
+      ].map((r) => '<div class="profile-item' + (r[2] ? ' full' : '') + '"><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>').join('');
+
+      const attPercent = n(att.totals.percent);
+      const ring = $('#overviewRing');
+      ring.style.setProperty('--p', attPercent);
+      ring.style.setProperty('--ring-color', attPercent >= 90 ? '#10b981' : attPercent >= 80 ? '#f59e0b' : '#ef4444');
+      $('#overviewRingValue').textContent = pct(attPercent) + '%';
+      $('#overviewAttTerm').textContent = 'ปี ' + attCtx.year + ' · ภาค ' + attCtx.term;
+      $('#overviewAttLegend').innerHTML = [
+        ['present', 'มาเรียน', att.totals.present, '#10b981'],
+        ['late', 'มาสาย', att.totals.late, '#f59e0b'],
+        ['sick', 'ลาป่วย', att.totals.sick, '#3b82f6'],
+        ['absent', 'ขาดเรียน', att.totals.absent + att.totals.truant, '#ef4444']
+      ].map((r) => '<div class="att-legend-row"><span class="att-dot" style="background:' + r[3] + '"></span>' + r[1] + '<b>' + r[2] + '</b></div>').join('');
+      $('#overviewAttLink').href = printUrl('attendance-student', { year: attCtx.year, term: attCtx.term });
+      $('#overviewComment').innerHTML = '<b>ครูประจำชั้น · ' + esc(store.getHomeroomTeacherLabel(classOf(student))) + '</b>' +
+        esc(contextTermData.homeroomComment || contextTermData.comment || 'ตั้งใจเรียน มีความประพฤติดี และเข้าร่วมกิจกรรมของโรงเรียนอย่างสม่ำเสมอ');
+
+      const recentSubjects = (contextTermData.subjects || []).filter((s) => !s.activity).slice(0, 6);
+      $('#overviewGrades').innerHTML = recentSubjects.length
+        ? '<thead><tr><th>รายวิชา</th><th style="text-align:center">คะแนน</th><th style="text-align:center">ผลการเรียน</th></tr></thead><tbody>' +
+          recentSubjects.map((sub) => '<tr><td><div class="subj-name">' + esc(sub.name) + '</div><div class="subj-code">' + esc(sub.code) + '</div></td>' +
+            '<td class="num">' + (typeof sub.score === 'number' ? sub.score : '-') + '</td><td class="num">' + gradeChip(sub.score) + '</td></tr>').join('') + '</tbody>'
+        : '<tbody><tr><td><div class="empty-mini">ยังไม่มีผลการเรียน</div></td></tr></tbody>';
+
+      /* แถบสรุปกิจกรรมพัฒนาผู้เรียนในภาพรวม */
+      const ovActs = store.getStudentActivities(student, activeTermKey.split('-')[0], activeTermKey.split('-')[1]);
+      const ovCounts = { pass: 0, wait: 0, fail: 0, pending: 0 };
+      ovActs.forEach((a) => { ovCounts[actTone(a)] += 1; });
+      const ovFoot = $('#overviewActivityFoot');
+      if (ovFoot) {
+        ovFoot.innerHTML =
+          '<div class="ov-act-foot">' +
+            '<span class="ov-act-title">กิจกรรมพัฒนาผู้เรียน</span>' +
+            '<span class="ov-act-chips">' +
+              '<span class="ov-act-chip pass">ผ. ' + ovCounts.pass + '</span>' +
+              '<span class="ov-act-chip fail">มผ. ' + ovCounts.fail + '</span>' +
+              '<span class="ov-act-chip wait">รออนุมัติ ' + ovCounts.wait + '</span>' +
+              '<span class="ov-act-chip pending">รอประเมิน ' + ovCounts.pending + '</span>' +
+            '</span>' +
+          '</div>' +
+          '<button type="button" class="btn btn-ghost btn-sm" data-ov-act-grades>ดูผลกิจกรรม →</button>';
+        const ovBtn = ovFoot.querySelector('[data-ov-act-grades]');
+        if (ovBtn) ovBtn.addEventListener('click', () => switchTab('grades'));
+      }
+
+      function renderClub() {
+        const club = student.registeredClubId ? store.getClubById(student.registeredClubId) : null;
+        if (!club) {
+          $('#overviewClub').innerHTML = '<div class="empty-mini">ยังไม่ได้เลือกชุมนุม<br><button type="button" class="btn btn-soft btn-sm mt-8" data-club-jump>เลือกชุมนุมที่สนใจ →</button></div>';
+        } else {
+          const [cy, ct] = activeTermKey.split('-');
+          const clubAct = store.getStudentActivity(student, cy, ct, 'club');
+          const clubTone = actTone(clubAct);
+          const clubPct = clubAct ? clubAct.percent : 0;
+          const clubStatus = '<div class="club-act-status ' + clubTone + '">' +
+            '<div class="cas-top"><span>ผลกิจกรรมพัฒนาผู้เรียน · ชุมนุม</span>' +
+              '<span class="cas-chip ' + clubTone + '">' + esc(ACT_TONE_LABEL[clubTone]) + '</span></div>' +
+            '<div class="cas-bar"><div class="cas-track"><span style="width:' + Math.min(100, clubPct) + '%"></span></div><b>' + esc(clubPct) + '%</b></div>' +
+            '<div class="cas-meta">' + (clubAct ? ('เข้าร่วม ' + esc(clubAct.attendedHours) + ' / ' + esc(clubAct.totalHours) + ' ชั่วโมง · เกณฑ์ผ่าน ' + ACT_PASS_PCT + '%') : ('ยังไม่มีข้อมูลเวลาเข้าร่วม · เกณฑ์ผ่าน ' + ACT_PASS_PCT + '%')) + '</div>' +
+          '</div>';
+          $('#overviewClub').innerHTML = '<div class="club-mini-card"><span class="cm-ico">' + docIcon('award') + '</span>' +
+            '<span><b>' + esc(club.name) + '</b><small>ครูที่ปรึกษา ' + esc(club.teacher || '-') + ' · ' + esc(club.members ? club.members.length : 0) + ' สมาชิก</small></span></div>' +
+            clubStatus +
+            '<div class="flex gap-8 mt-12 wrap"><button type="button" class="btn btn-outline btn-sm" data-club-jump>เปลี่ยน / ยกเลิกชุมนุม</button>' +
+            '<a class="btn btn-ghost btn-sm" href="club-community.html?clubId=' + encodeURIComponent(club.id) + '&id=' + encodeURIComponent(student.id) + '" target="_blank">เปิดหน้าชุมชน</a>' +
+            '<button type="button" class="btn btn-ghost btn-sm" data-go-tab="grades">ดูผลกิจกรรมทั้งหมด →</button></div>';
+        }
+        $$('#overviewClub [data-club-jump]').forEach((b) => b.addEventListener('click', () => switchTab('clubs')));
+        $$('#overviewClub [data-go-tab]').forEach((b) => b.addEventListener('click', () => switchTab(b.getAttribute('data-go-tab'))));
+      }
+      renderClub();
+
+      /* ------------------------ club picker ------------------------ */
+      function clubSeats(club) {
+        const used = Array.isArray(club.members) ? club.members.length : (Number(club.enrolledSeats) || 0);
+        const max = Number(club.maxSeats) || 0;
+        return { used: used, max: max, left: Math.max(0, max - used) };
+      }
+      function clubState(club) {
+        const s = clubSeats(club);
+        if (club.isOpen === false) return { key: 'closed', label: 'ปิดรับสมัคร', tone: '#94a3b8' };
+        if (s.max && s.used >= s.max) return { key: 'full', label: 'เต็มแล้ว', tone: '#e11d48' };
+        return { key: 'open', label: 'เปิดรับสมัคร', tone: '#059669' };
+      }
+      function renderMyClub() {
+        const body = $('#myClubBody');
+        if (!body) return;
+        const club = student.registeredClubId ? store.getClubById(student.registeredClubId) : null;
+        if (!club) {
+          body.innerHTML = '<div class="club-empty">' +
+            '<span class="ce-ico">' + docIcon('award') + '</span>' +
+            '<div><b>คุณยังไม่ได้เลือกชุมนุม</b><span>เลือกชุมนุมจากรายการด้านล่างได้ทันที หากระบบยังไม่เต็ม</span></div></div>';
+          return;
+        }
+        const s = clubSeats(club);
+        const st = clubState(club);
+        const [cy, ct] = activeTermKey.split('-');
+        const clubAct = store.getStudentActivity(student, cy, ct, 'club');
+        const clubTone = actTone(clubAct);
+        const clubPct = clubAct ? clubAct.percent : 0;
+        body.innerHTML =
+          '<div class="club-current">' +
+            '<div class="cc-top"><span class="cc-badge" style="background:#eef2ff;color:#4338ca">ชุมนุมของฉัน</span>' +
+            '<span class="cc-badge" style="background:' + st.tone + '18;color:' + st.tone + '">' + esc(st.label) + '</span></div>' +
+            '<div class="cc-main"><span class="cc-ico">' + docIcon('award') + '</span>' +
+            '<div class="cc-info"><b>' + esc(club.name) + '</b>' +
+            '<small>' + esc(club.code || '') + ' · ครูที่ปรึกษา ' + esc(club.teacher || '-') + ' · ชั้น ' + esc(club.targetGrade || '-') + '</small>' +
+            '<div class="cc-seats"><span>ที่นั่ง ' + s.used + '/' + s.max + '</span><div class="cc-bar"><i style="width:' + (s.max ? Math.min(100, (s.used / s.max) * 100) : 0) + '%"></i></div></div>' +
+            '</div></div>' +
+            '<div class="club-act-status ' + clubTone + '" style="margin:0 0 12px">' +
+              '<div class="cas-top"><span>ผลการประเมินกิจกรรมพัฒนาผู้เรียน</span>' +
+                '<span class="cas-chip ' + clubTone + '">' + esc(ACT_TONE_LABEL[clubTone]) + '</span></div>' +
+              '<div class="cas-bar"><div class="cas-track"><span style="width:' + Math.min(100, clubPct) + '%"></span></div><b>' + esc(clubPct) + '%</b></div>' +
+              '<div class="cas-meta">' + (clubAct ? ('เข้าร่วม ' + esc(clubAct.attendedHours) + ' / ' + esc(clubAct.totalHours) + ' ชั่วโมง · เกณฑ์ผ่าน ' + ACT_PASS_PCT + '%') : ('ยังไม่มีข้อมูลเวลาเข้าร่วม · เกณฑ์ผ่าน ' + ACT_PASS_PCT + '%')) + '</div>' +
+            '</div>' +
+            '<div class="cc-actions">' +
+              '<button type="button" class="btn btn-outline btn-sm" data-club-cancel>ยกเลิกการลงทะเบียน</button>' +
+              '<a class="btn btn-ghost btn-sm" href="club-community.html?clubId=' + encodeURIComponent(club.id) + '&id=' + encodeURIComponent(student.id) + '" target="_blank">เปิดหน้าชุมชน</a>' +
+            '</div>' +
+          '</div>';
+      }
+      function renderClubPicker() {
+        const grid = $('#clubPickGrid');
+        if (!grid) return;
+        const clubs = store.getAllClubs();
+        const currentId = student.registeredClubId || '';
+        const openCount = clubs.filter((c) => clubState(c).key === 'open').length;
+        $('#clubListSub').textContent = 'ทั้งหมด ' + clubs.length + ' ชุมนุม · เปิดรับสมัคร ' + openCount + ' ชุมนุม';
+        if (!clubs.length) {
+          grid.innerHTML = '<div class="empty-mini" style="grid-column:1/-1">ยังไม่มีชุมนุมในระบบ</div>';
+          return;
+        }
+        grid.innerHTML = clubs.map((club) => {
+          const s = clubSeats(club);
+          const st = clubState(club);
+          const isMine = club.id === currentId;
+          const canJoin = st.key === 'open' || (isMine && st.key !== 'closed');
+          const pctSeats = s.max ? Math.min(100, Math.round((s.used / s.max) * 100)) : 0;
+          let action = '';
+          if (isMine) {
+            action = '<button type="button" class="btn btn-soft btn-sm w-full" disabled>กำลังเรียนอยู่ในชุมนุมนี้</button>';
+          } else if (st.key === 'open') {
+            action = '<button type="button" class="btn btn-primary btn-sm w-full" data-club-join="' + esc(club.id) + '">เลือกชุมนุมนี้</button>';
+          } else if (st.key === 'full') {
+            action = '<button type="button" class="btn btn-sm w-full" disabled style="background:#fff1f2;color:#be123c;border:1px solid #fecdd3">ที่นั่งเต็ม (' + s.used + '/' + s.max + ')</button>';
+          } else {
+            action = '<button type="button" class="btn btn-sm w-full" disabled style="background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0">ปิดรับสมัครแล้ว</button>';
+          }
+          return '<div class="club-pick-card' + (isMine ? ' mine' : '') + (canJoin ? '' : ' off') + '">' +
+            '<div class="cp-top"><span class="cp-code">' + esc(club.code || 'ชุมนุม') + '</span>' +
+            '<span class="cp-state" style="background:' + st.tone + '16;color:' + st.tone + '">' + esc(st.label) + '</span></div>' +
+            '<b class="cp-name">' + esc(club.name) + '</b>' +
+            '<p class="cp-desc">' + esc(club.description || '-') + '</p>' +
+            '<div class="cp-meta"><span>👨‍🏫 ' + esc(club.teacher || '-') + '</span><span>🎓 ' + esc(club.targetGrade || '-') + '</span></div>' +
+            '<div class="cp-seats"><div class="cp-seat-head"><span>ที่นั่ง</span><b>' + s.used + ' / ' + s.max + '</b></div>' +
+            '<div class="cp-bar"><i style="width:' + pctSeats + '%;background:' + (st.key === 'open' ? 'linear-gradient(90deg,#34d399,#059669)' : st.key === 'full' ? 'linear-gradient(90deg,#fb7185,#e11d48)' : '#cbd5e1') + '"></i></div></div>' +
+            action +
+            (club.announcements && club.announcements.length ? '<a class="cp-ann" href="club-community.html?clubId=' + encodeURIComponent(club.id) + '&id=' + encodeURIComponent(student.id) + '" target="_blank">ประกาศ ' + club.announcements.length + ' รายการ →</a>' : '') +
+            '</div>';
+        }).join('');
+      }
+      function refreshClubs() {
+        student = store.getStudentById(student.id) || student;
+        renderMyClub();
+        renderClubPicker();
+        renderClub();
+      }
+      const clubHost = $('#panel-clubs');
+      if (clubHost) {
+        clubHost.addEventListener('click', (e) => {
+          const join = e.target.closest('[data-club-join]');
+          if (join) {
+            const club = store.getClubById(join.getAttribute('data-club-join'));
+            if (!club) return;
+            const s = clubSeats(club);
+            if (club.isOpen === false) { window.smsModal.showError({ title: 'ปิดรับสมัคร', message: 'ชุมนุมนี้ปิดรับสมัครแล้ว' }); return; }
+            if (s.max && s.used >= s.max) { window.smsModal.showError({ title: 'ที่นั่งเต็มแล้ว', message: 'ชุมนุมนี้มีสมาชิกครบ ' + s.max + ' คนแล้ว กรุณาเลือกชุมนุมอื่น' }); return; }
+            const current = student.registeredClubId ? store.getClubById(student.registeredClubId) : null;
+            const msg = current
+              ? 'ต้องการเปลี่ยนจาก <b>' + esc(current.name) + '</b> ไปเป็น <b>' + esc(club.name) + '</b> ใช่หรือไม่?'
+              : 'ต้องการเลือก <b>' + esc(club.name) + '</b> เป็นชุมนุมของคุณใช่หรือไม่?';
+            window.smsModal.showConfirm({
+              title: current ? 'เปลี่ยนชุมนุม' : 'เลือกชุมนุม',
+              message: msg + '<br><small>เหลือที่นั่ง ' + s.left + ' ที่นั่ง</small>',
+              confirmText: current ? 'เปลี่ยนชุมนุม' : 'ยืนยันเลือกชุมนุม',
+              onConfirm: () => {
+                const res = store.registerClub(student.id, club.id);
+                if (!res.success) { window.smsModal.showError({ title: 'ไม่สามารถเลือกได้', message: res.message || 'กรุณาลองใหม่อีกครั้ง' }); return; }
+                refreshClubs();
+                window.smsModal.showSuccess({ title: 'เลือกชุมนุมเรียบร้อย', message: 'คุณได้ลงทะเบียนเข้า <b>' + esc(club.name) + '</b> เรียบร้อยแล้ว', btnText: 'ตกลง' });
+              }
+            });
+            return;
+          }
+          const cancel = e.target.closest('[data-club-cancel]');
+          if (cancel) {
+            const current = student.registeredClubId ? store.getClubById(student.registeredClubId) : null;
+            if (!current) return;
+            window.smsModal.showConfirm({
+              title: 'ยกเลิกการลงทะเบียน',
+              message: 'ต้องการยกเลิกการลงทะเบียน <b>' + esc(current.name) + '</b> ใช่หรือไม่?<br><small>คุณสามารถเลือกชุมนุมใหม่ได้ทันทีหากที่นั่งยังว่าง</small>',
+              confirmText: 'ยกเลิกการลงทะเบียน',
+              isDanger: true,
+              onConfirm: () => {
+                const res = store.cancelClubRegistration(student.id);
+                if (!res.success) { window.smsModal.showError({ title: 'ไม่สามารถยกเลิกได้', message: res.message || 'กรุณาลองใหม่อีกครั้ง' }); return; }
+                refreshClubs();
+                window.smsModal.showSuccess({ title: 'ยกเลิกเรียบร้อย', message: 'ยกเลิกการลงทะเบียน <b>' + esc(res.clubName || current.name) + '</b> แล้ว คุณสามารถเลือกชุมนุมใหม่ได้', btnText: 'ตกลง' });
+              }
+            });
+          }
+        });
+        renderMyClub();
+        renderClubPicker();
+      }
+
+      /* ------------------------ grades ------------------------ */
+      function termLabel(key) {
+        const parts = key.split('-');
+        return 'ปี ' + parts[0] + ' · ภาค ' + parts[1];
+      }
+      function renderTermPills() {
+        const keys = termKeys.length ? termKeys : [activeTermKey];
+        $('#termPills').innerHTML = keys.map((k) =>
+          '<button type="button" class="term-pill' + (k === activeTermKey ? ' active' : '') + '" data-term="' + esc(k) + '">' + esc(termLabel(k)) + '</button>'
+        ).join('');
+        $$('#termPills [data-term]').forEach((b) => {
+          b.addEventListener('click', () => {
+            activeTermKey = b.getAttribute('data-term');
+            renderTermPills();
+            renderGrades();
+          });
+        });
+      }
+      function renderGrades() {
+        const [y, t] = activeTermKey.split('-');
+        const sum = store.summarizeStudent(student, y, t);
+        const termData = store.getTermData(student, y, t);
+        const subjects = sum.subjects || [];
+        /* ครูผู้สอนต้องตรงกับผู้ที่ได้รับมอบหมายรายวิชาในภาคเรียนนั้น (ถ้ามีการมอบหมาย) */
+        const assigns = store.getSubjectAssignments({ year: y, term: t, className: classOf(student) });
+        const teacherByCode = {};
+        const teacherByName = {};
+        assigns.forEach((a) => {
+          if (a.subjectCode && a.teacherName) teacherByCode[a.subjectCode] = a.teacherName;
+          if (a.subjectName && a.teacherName && !teacherByName[a.subjectName]) teacherByName[a.subjectName] = a.teacherName;
+        });
+        const teacherOf = (sub) => teacherByCode[sub.code] || teacherByName[sub.name] || sub.teacher || '';
+        $('#gradesHeadSub').textContent = termLabel(activeTermKey) + ' · ' + (sum.subjects.length || 0) + ' รายวิชา · GPA ' + sum.gpa;
+        $('#gradesTable').innerHTML = subjects.length
+          ? '<thead><tr><th style="width:34px">#</th><th>รหัส / รายวิชา</th><th style="text-align:center">หน่วยกิต</th><th style="text-align:center">เวลาเรียน</th><th style="text-align:center">คะแนน</th><th style="text-align:center">ผลการเรียน</th><th>ครูผู้สอน</th></tr></thead><tbody>' +
+            subjects.map((sub, i) => '<tr><td class="num" style="color:#94a3b8">' + (i + 1) + '</td>' +
+              '<td><div class="subj-name">' + esc(sub.name) + '</div><div class="subj-code">' + esc(sub.code) + ' · ' + esc(sub.category || '') + '</div></td>' +
+              '<td class="num">' + (sub.activity ? '-' : (sub.credits || 0)) + '</td>' +
+              '<td class="num">' + (sub.hours || 0) + '</td>' +
+              '<td class="num">' + (typeof sub.score === 'number' ? sub.score : esc(sub.score || '-')) + '</td>' +
+              '<td class="num">' + gradeChip(sub.score) + '</td>' +
+              '<td style="font-size:0.73rem;color:#64748b">' + esc(teacherOf(sub) || '-') + '</td></tr>').join('') +
+            '</tbody>'
+          : '<tbody><tr><td><div class="empty-mini">ยังไม่มีข้อมูลผลการเรียนในภาคเรียนนี้</div></td></tr></tbody>';
+        $('#gradesSummaryFoot').innerHTML =
+          '<div class="flex justify-between items-center wrap gap-10" style="font-size:0.78rem">' +
+            '<span class="text-muted">สรุป: หน่วยกิตรวม <b class="num">' + (sum.totalCredits || 0) + '</b> · คะแนนเฉลี่ย <b class="num">' + (sum.average || '-') + '</b> · GPA <b class="num" style="color:#4f46e5">' + (sum.gpa || '-') + '</b></span>' +
+            '<div class="flex gap-6">' +
+              '<a class="btn btn-outline btn-sm" target="_blank" href="' + printUrl('pp4', { year: y, term: t }) + '">ปพ.4</a>' +
+              '<a class="btn btn-outline btn-sm" target="_blank" href="' + printUrl('pp6', { year: y, term: t }) + '">ปพ.6</a>' +
+            '</div></div>';
+
+        const gradeActs = store.getStudentActivities(student, y, t);
+        const gradePassed = gradeActs.filter((a) => a.result === 'ผ.').length;
+        const gradePending = gradeActs.filter((a) => !a.result || a.result === 'รอประเมิน').length;
+        const gradeOverall = $('#gradesActivityOverall');
+        if (gradeOverall) gradeOverall.textContent = 'ผ่าน ' + gradePassed + '/' + gradeActs.length + (gradePending ? ' · รอประเมิน ' + gradePending : '') + ' กิจกรรม';
+        const gradeActBody = $('#gradesActivityBody');
+        if (gradeActBody) {
+          gradeActBody.innerHTML = gradeActs.length
+            ? activityCardsHTML(gradeActs, { subtitle: 'ผลการประเมินกิจกรรมพัฒนาผู้เรียน ภาคเรียนที่ ' + t })
+            : '<div class="empty-mini">ยังไม่มีข้อมูลกิจกรรมพัฒนาผู้เรียนในภาคเรียนนี้</div>';
+        }
+        /* ให้การ์ดในแท็บ “พัฒนาการ” อัปเดตตามภาคเรียนที่เลือกด้วย */
+        const devActBody = $('#activityDevCard');
+        if (devActBody) {
+          devActBody.innerHTML = gradeActs.length
+            ? activityCardsHTML(gradeActs, { subtitle: 'ผลการประเมินกิจกรรมพัฒนาผู้เรียน ภาคเรียนที่ ' + t })
+            : '<div class="empty-mini">ยังไม่มีข้อมูลกิจกรรมพัฒนาผู้เรียนในภาคเรียนนี้</div>';
+        }
+        const devActOverall = $('#activityDevOverall');
+        if (devActOverall) devActOverall.textContent = 'ผ่าน ' + gradePassed + '/' + gradeActs.length + (gradePending ? ' · รอประเมิน ' + gradePending : '') + ' กิจกรรม';
+        renderCumulative();
+        renderTranscriptTable();
+      }
+      function renderCumulative() {
+        const gpaNum = Number(gpaX);
+        const tone = isNaN(gpaNum) ? '#64748b' : gpaNum >= 3.5 ? '#059669' : gpaNum >= 2.5 ? '#2563eb' : gpaNum >= 1.5 ? '#d97706' : '#e11d48';
+        $('#cumulativeCard').innerHTML =
+          '<div class="flex items-center gap-18 wrap" style="gap:20px">' +
+            '<div style="width:112px;height:112px;border-radius:50%;background:conic-gradient(' + tone + ' ' + Math.max(0, Math.min(100, (gpaNum / 4) * 100)) + '%,#eef1f7 0);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0">' +
+              '<div style="position:absolute;inset:9px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column">' +
+                '<b class="num" style="font-size:1.5rem;color:' + tone + ';line-height:1.1">' + esc(gpaX) + '</b><span style="font-size:0.62rem;color:#94a3b8">GPAX</span>' +
+              '</div>' +
+            '</div>' +
+            '<div style="flex:1;min-width:150px;display:grid;gap:7px">' +
+              '<div class="comp-row"><span>หน่วยกิตรวมสะสม</span><b style="background:#eef2ff;color:#4338ca">' + totalCredits + '</b></div>' +
+              '<div class="comp-row"><span>ภาคเรียนที่บันทึก</span><b style="background:#ecfdf5;color:#047857">' + transcript.length + '</b></div>' +
+              '<div class="comp-row"><span>ผลการประเมินรวม</span><b style="background:' + (gpaNum >= 1 ? '#ecfdf5;color:#047857' : '#fff1f2;color:#be123c') + '">' + (gpaNum >= 1 ? 'ผ่านเกณฑ์' : 'รอประเมิน') + '</b></div>' +
+            '</div>' +
+          '</div>';
+      }
+      function renderTranscriptTable() {
+        $('#transcriptTable').innerHTML = transcript.length
+          ? '<thead><tr><th>ภาคเรียน</th><th style="text-align:center">GPA</th><th style="text-align:center">หน่วยกิต</th><th style="text-align:center">เฉลี่ย</th></tr></thead><tbody>' +
+            transcript.map((t) => '<tr' + (t.key === activeTermKey ? ' style="background:#f8faff"' : '') + '>' +
+              '<td><div class="subj-name">' + esc(t.year) + ' / ' + esc(t.term) + '</div><div class="subj-code">' + (t.key === activeTermKey ? 'กำลังดูอยู่' : '') + '</div></td>' +
+              '<td class="num"><b style="color:#4f46e5">' + esc(t.gpa) + '</b></td>' +
+              '<td class="num">' + t.totalCredits + '</td>' +
+              '<td class="num">' + esc(t.average) + '</td></tr>').join('') + '</tbody>'
+          : '<tbody><tr><td><div class="empty-mini">ยังไม่มีข้อมูลผลการเรียนสะสม</div></td></tr></tbody>';
+      }
+      renderTermPills();
+      renderGrades();
+
+      /* ------------------------ attendance ------------------------ */
+      const attStatItems = [
+        { key: 'present', label: 'มาเรียน', value: att.totals.present, color: '#059669' },
+        { key: 'late', label: 'มาสาย', value: att.totals.late, color: '#d97706' },
+        { key: 'sick', label: 'ลาป่วย', value: att.totals.sick, color: '#2563eb' },
+        { key: 'business', label: 'ลากิจ', value: att.totals.business, color: '#7c3aed' },
+        { key: 'absent', label: 'ขาดเรียน', value: att.totals.absent, color: '#dc2626' },
+        { key: 'truant', label: 'หนีเรียน', value: att.totals.truant, color: '#be123c' },
+        { key: 'total', label: 'วันเรียนทั้งหมด', value: att.totals.total, color: '#475569' },
+        { key: 'percent', label: 'อัตรามาเรียน', value: pct(att.totals.percent) + '%', color: '#4f46e5' }
+      ];
+      $('#attendanceStats').innerHTML = attStatItems.map((s) =>
+        '<div class="mini-stat" style="--ms-color:' + s.color + '"><span>' + s.label + '</span><b>' + s.value + '</b></div>'
+      ).join('');
+      $('#attendanceMonthly').innerHTML = att.monthly.length
+        ? '<div class="month-bars">' + att.monthly.map((m) => {
+          const p = n(m.percent);
+          const color = p >= 90 ? 'linear-gradient(90deg,#34d399,#059669)' : p >= 80 ? 'linear-gradient(90deg,#fbbf24,#d97706)' : 'linear-gradient(90deg,#fb7185,#e11d48)';
+          return '<div class="month-bar-row"><span class="mb-label">' + esc(m.label) + '</span>' +
+            '<div class="mb-track"><div class="mb-fill" style="width:' + Math.max(1, p) + '%;background:' + color + '"></div></div>' +
+            '<span class="mb-val" style="color:' + (p >= 90 ? '#047857' : p >= 80 ? '#b45309' : '#be123c') + '">' + pct(p) + '%</span></div>';
+        }).join('') + '</div>'
+        : '<div class="empty-mini">ยังไม่มีข้อมูลการเช็คชื่อในภาคเรียนนี้</div>';
+      const totalForLegend = att.totals.present + att.totals.late + att.totals.sick + att.totals.business + att.totals.absent + att.totals.truant;
+      $('#attendanceStatusSummary').innerHTML =
+        '<div class="att-legend" style="margin-bottom:14px">' +
+          attStatItems.slice(0, 6).map((s) => '<div class="att-legend-row"><span class="att-dot" style="background:' + s.color + '"></span>' + s.label +
+            '<b>' + s.value + '</b></div>').join('') +
+        '</div>' +
+        '<div class="progress" style="height:9px"><span style="width:' + pct(att.totals.percent) + '%;background:linear-gradient(90deg,#34d399,#059669)"></span></div>' +
+        '<div class="flex justify-between items-center mt-8" style="font-size:0.72rem;color:#64748b"><span>มาเรียน ' + att.totals.present + ' จาก ' + totalForLegend + ' วัน</span><b style="color:#047857">' + pct(att.totals.percent) + '%</b></div>';
+      $('#attendanceHistorySub').textContent = attCtx.year + ' / ' + attCtx.term + ' · ' + att.records.length + ' วัน';
+      const records = att.records.slice(-14).reverse();
+      $('#attendanceHistory').innerHTML = records.length
+        ? records.map((r) => {
+          const st = statusMeta(r.status);
+          const d = C.isoToDate(r.dateISO);
+          return '<div class="att-record"><span class="ar-date">' + esc(thaiDate(r.dateISO, { short: true })) + '</span>' +
+            '<span class="ar-day">' + esc(C.THAI_DAYS[d.getDay()]) + '</span>' + statusPill(r.status) + '</div>';
+        }).join('')
+        : '<div class="empty-mini">ยังไม่มีประวัติการเช็คชื่อ</div>';
+      $('#attPrintBtn').href = printUrl('attendance-student', { year: attCtx.year, term: attCtx.term });
+
+      /* ---------- เช็คชื่อวันนี้: ครูประจำชั้น + รายวิชา ---------- */
+      (function renderTodayAttendance() {
+        const cls = student.className || '';
+        const today = C.dateToISO(new Date());
+        let dateISO = today;
+        let hr = cls ? store.getAttendanceRecord(today, cls) : {};
+        let subs = store.listSubjectAttendance({ className: cls }).filter((x) => x.dateISO === today);
+        if (!Object.keys(hr || {}).length && !subs.length) {
+          const fb = store.getDefaultAttendanceDate();
+          if (fb && fb !== today) {
+            dateISO = fb;
+            hr = cls ? store.getAttendanceRecord(fb, cls) : {};
+            subs = store.listSubjectAttendance({ className: cls }).filter((x) => x.dateISO === fb);
+          }
+        }
+        const isToday = dateISO === today;
+        const meta = cls ? store.getAttendanceMeta(dateISO, cls) : null;
+        const myStatus = hr && hr[student.id] ? hr[student.id] : '';
+        const dateLabel = (isToday ? 'วันนี้ · ' : 'ข้อมูลล่าสุด · ') + C.formatThaiDate(dateISO);
+
+        $('#todayAttSub').textContent = dateLabel + (cls ? ' · ' + cls : '');
+
+        const hrBlock = myStatus
+          ? '<div class="ta-block">' +
+              '<span class="ta-label">ครูประจำชั้น ' + esc(store.getHomeroomTeacherLabel ? store.getHomeroomTeacherLabel(cls) : '') + '</span>' +
+              statusPill(myStatus) +
+              '<small>' + esc(meta && meta.checkedAt ? 'บันทึกเมื่อ ' + C.formatThaiDateTime(meta.checkedAt) : 'เช็คชื่อโดยครูประจำชั้นแล้ว') + '</small>' +
+            '</div>'
+          : '<div class="ta-block">' +
+              '<span class="ta-label">ครูประจำชั้น</span>' +
+              '<span class="att-pill pending"><i></i>ยังไม่เช็คชื่อ</span>' +
+              '<small>' + (isToday ? 'ครูประจำชั้นจะเช็คชื่อเมื่อเริ่มวันเรียน' : 'ไม่พบข้อมูลการเช็คชื่อของวันนี้') + '</small>' +
+            '</div>';
+
+        const subBlock = '<div class="ta-block">' +
+          '<span class="ta-label">การเช็คชื่อรายวิชา</span>' +
+          '<b class="ta-count">' + subs.length + ' วิชา</b>' +
+          '<small>' + (subs.length ? 'โดยครูผู้สอนแต่ละรายวิชา' : 'ครูผู้สอนยังไม่เช็คชื่อรายวิชา') + '</small>' +
+        '</div>';
+
+        const rows = subs.map((s) => {
+          const st = s.records && s.records[student.id] ? s.records[student.id] : '';
+          const m = s.meta || {};
+          const periodTxt = m.period ? 'คาบ ' + esc(String(m.period)) + ' · ' : '';
+          const teacherTxt = m.teacher ? esc(m.teacher) : 'ครูผู้สอน';
+          return '<div class="ta-sub-row">' +
+            '<div class="ta-sub-main"><b>' + esc((m.subjectName || s.subjectCode || 'รายวิชา')) + '</b>' +
+            '<span>' + periodTxt + teacherTxt + '</span></div>' +
+            (st ? statusPill(st) : '<span class="att-pill pending"><i></i>ยังไม่ระบุ</span>') +
+            '</div>';
+        }).join('');
+
+        $('#todayAttendance').innerHTML =
+          '<div class="ta-grid">' + hrBlock + subBlock + '</div>' +
+          (rows ? '<div class="ta-sub-list">' + rows + '</div>'
+            : '<div class="empty-mini">ยังไม่มีการเช็คชื่อรายวิชา' + (isToday ? 'ในวันนี้' : 'ในวันที่ ' + esc(C.formatThaiDateShort(dateISO))) + ' — เมื่อครูผู้สอนเช็คชื่อจากตารางสอน รายการจะแสดงที่นี่</div>');
+      })();
+
+      /* ------------------------ schedule (ตารางเรียนรายสัปดาห์) ------------------------ */
+      (function renderSchedule() {
+        const conf = store.getSettings().tt || {};
+        const days = (Array.isArray(conf.days) && conf.days.length) ? conf.days : [
+          { n: 1, name: 'จันทร์', short: 'จ.' }, { n: 2, name: 'อังคาร', short: 'อ.' },
+          { n: 3, name: 'พุธ', short: 'พ.' }, { n: 4, name: 'พฤหัสบดี', short: 'พฤ.' }, { n: 5, name: 'ศุกร์', short: 'ศ.' }
+        ];
+        const periods = (Array.isArray(conf.periods) && conf.periods.length) ? conf.periods : [
+          { p: 1, time: '08:30–09:20' }, { p: 2, time: '09:20–10:10' }, { p: 3, time: '10:10–11:00' },
+          { p: 4, time: '11:00–11:50' }, { p: 5, time: '12:40–13:30' }, { p: 6, time: '13:30–14:20' },
+          { p: 7, time: '14:20–15:10' }
+        ];
+        const breakPeriods = Array.isArray(conf.breakPeriods) ? conf.breakPeriods : [];
+        const className = student.className || '';
+        const schedCtx = store.getStudentScheduleContext(className, attCtx.year, attCtx.term);
+        let entries = store.getClassStudentSchedule(className, schedCtx.year, schedCtx.term);
+        const usingOwnSchedule = entries.length > 0;
+        if (!entries.length) entries = store.getCollection('timetable').filter((e) => e.className === className);
+        const spanOf = (e) => { const n = Number(e && e.span); return (n === 2 || n === 3) ? n : 1; };
+        const byCell = {};
+        const covered = {};
+        entries.forEach((e) => {
+          byCell[Number(e.day) + '-' + Number(e.period)] = e;
+          const n = spanOf(e);
+          for (let i = 1; i < n; i++) covered[Number(e.day) + '-' + (Number(e.period) + i)] = true;
+        });
+
+        const PALETTE = [
+          ['#eef2ff', '#3730a3'], ['#fdf4ff', '#86198f'], ['#ecfeff', '#155e75'], ['#ecfdf5', '#065f46'],
+          ['#fff7ed', '#9a3412'], ['#fff1f2', '#9f1239'], ['#f5f3ff', '#5b21b6'], ['#f0fdfa', '#115e59'],
+          ['#fefce8', '#854d0e'], ['#eff6ff', '#1e40af'], ['#f7fee7', '#3f6212'], ['#faf5ff', '#6b21a8']
+        ];
+        const hash = (s) => { let h = 0; const str = String(s || ''); for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0; return Math.abs(h); };
+        const colorOf = (e) => PALETTE[hash(e.subjectCode || e.subjectName) % PALETTE.length];
+
+        const jsDay = new Date().getDay();
+        const todayN = jsDay === 0 ? 7 : jsDay;
+        const isSchoolDay = days.some((d) => Number(d.n) === todayN);
+
+        /* --- แถบสถิติ --- */
+        const todayCount = entries.filter((e) => Number(e.day) === todayN).length;
+        const firstTeacher = entries.length ? (entries[0].homeroomTeacher || '') : '';
+        const homeroomName = (store.getClassNames && (store.getHomeroomTeachers(className) || [])[0]) || '';
+        $('#scheduleBar').innerHTML = [
+          { label: 'ปีการศึกษา / ภาคเรียน', value: schedCtx.year + '/' + schedCtx.term, color: '#4f46e5' },
+          { label: 'คาบเรียนต่อสัปดาห์', value: entries.length + ' คาบ', color: '#7c3aed' },
+          { label: 'วิชาที่เรียน', value: new Set(entries.map((e) => e.subjectCode || e.subjectName)).size + ' วิชา', color: '#0891b2' },
+          { label: 'คาบเรียนวันนี้', value: isSchoolDay ? todayCount + ' คาบ' : 'วันหยุด', color: isSchoolDay ? '#059669' : '#94a3b8' }
+        ].map((s) => '<div class="mini-stat" style="--ms-color:' + s.color + '"><span>' + s.label + '</span><b>' + esc(String(s.value)) + '</b></div>').join('');
+
+        $('#scheduleSub').textContent = className + ' · ปี ' + schedCtx.year + ' ภาค ' + schedCtx.term + ' · ' + days.length + ' วัน × ' + periods.length + ' คาบ';
+        if ($('#schedulePrint')) $('#schedulePrint').href = printUrl('student-timetable', { class: className, year: schedCtx.year, term: schedCtx.term });
+
+        /* --- ตาราง --- */
+        if (!entries.length) {
+          $('#scheduleGrid').innerHTML =
+            '<div class="stu-sched-empty">' +
+              '<svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 13h4M7 17h10"/></svg>' +
+              '<b>ยังไม่มีตารางเรียนของห้อง ' + esc(className) + '</b>' +
+              '<span>ครูประจำชั้น (<b>' + esc(homeroomName || '-') + '</b>) เป็นผู้จัดและเพิ่มตารางเรียนให้ห้องนี้ — เมื่อบันทึกแล้วจะแสดงทันทีที่หน้านี้</span>' +
+            '</div>';
+          $('#scheduleLegend').innerHTML = '';
+          $('#scheduleNote').innerHTML = '';
+          return;
+        }
+
+        const head = '<thead><tr><th class="ss-time">เวลา</th>' + days.map((d) =>
+          '<th class="ss-day' + (Number(d.n) === todayN ? ' today' : '') + '">' + esc(d.name) +
+          (Number(d.n) === todayN ? '<small>วันนี้</small>' : '') + '</th>').join('') + '</tr></thead>';
+
+        const body = periods.map((p, pi) => {
+          const isBreak = breakPeriods.indexOf(Number(p.p)) !== -1;
+          return '<tr' + (isBreak ? ' class="ss-break"' : '') + '>' +
+            '<td class="ss-time"><b>คาบ ' + p.p + '</b><span>' + esc(p.time) + '</span></td>' +
+            days.map((d) => {
+              const key = Number(d.n) + '-' + Number(p.p);
+              if (covered[key]) return '';
+              const e = byCell[key];
+              if (!e) return '<td class="ss-cell"><div class="ss-slot ss-empty">—</div></td>';
+              const c = colorOf(e);
+              const n = Math.min(spanOf(e), periods.length - pi);
+              const spanLabel = n > 1 ? '<em class="ss-span">คาบ ' + p.p + '–' + (Number(p.p) + n - 1) + '</em>' : '';
+              return '<td class="ss-cell"' + (n > 1 ? ' rowspan="' + n + '"' : '') + '><div class="ss-slot' + (n > 1 ? ' ss-block' : '') + '" style="background:linear-gradient(160deg,' + c[0] + ',#ffffff);border-color:' + c[1] + '33;color:' + c[1] + '">' +
+                '<strong>' + esc(e.subjectName || '-') + '</strong>' +
+                '<span>' + esc(e.teacher || 'ครูผู้สอน') + '</span>' +
+                (e.room && e.room !== className ? '<em>' + esc(e.room) + '</em>' : '') +
+                spanLabel +
+                '</div></td>';
+            }).join('') + '</tr>';
+        }).join('');
+
+        $('#scheduleGrid').innerHTML = '<div class="ss-scroll"><table class="ss-table">' + head + '<tbody>' + body + '</tbody></table></div>';
+
+        /* --- คำอธิบายสี --- */
+        const used = [];
+        entries.forEach((e) => {
+          const key = e.subjectCode || e.subjectName;
+          if (!used.some((u) => u.key === key)) used.push({ key: key, name: e.subjectName, color: colorOf(e) });
+        });
+        $('#scheduleLegend').innerHTML = used.map((u) =>
+          '<span class="ss-lg"><i style="background:linear-gradient(160deg,' + u.color[0] + ',#fff);border-color:' + u.color[1] + '44"></i>' + esc(u.name) + '</span>').join('');
+
+        $('#scheduleNote').innerHTML =
+          '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>' +
+          '<div><b>ตารางเรียนนี้จัดโดยครูประจำชั้น' + (homeroomName ? ' ' + esc(homeroomName) : '') + '</b> ' +
+          '<span>นักเรียนดูอย่างเดียว — หากต้องการแก้ไขหรือเพิ่มคาบเรียน ให้แจ้งครูประจำชั้นเพื่อแก้ไขในระบบ “ตารางเรียนนักเรียน” ตารางจะอัปเดตให้ทันทีที่บันทึก' +
+          (usingOwnSchedule ? '' : ' (ขณะนี้แสดงข้อมูลเริ่มต้นจากตารางสอนของครู)') + '</span></div>';
+      })();
+
+      /* ------------------------ development ------------------------ */
+      const ch = contextTermData.characteristics || { items: [], competencies: {}, readingThinkingAnalysis: {} };
+      const behScoreN = Number(behavior.currentScore) || 0;
+      const behTone = behScoreN >= 80 ? '' : ' negative';
+      const behLabel = behScoreN > 100 ? 'ดีเด่น' : behScoreN >= 80 ? 'ดีเยี่ยม' : behScoreN >= 50 ? 'ดี' : behScoreN >= 0 ? 'ปกติ' : 'เฝ้าระวัง';
+      const behDeltaTxt = Number(behavior.delta || 0) === 0 ? 'ไม่มีการปรับคะแนน'
+        : 'ครูปรับ ' + (behavior.delta > 0 ? '+' : '') + behavior.delta + ' คะแนน';
+      $('#behaviorCard').innerHTML =
+        '<div class="behavior-score-card' + behTone + '" style="margin-bottom:16px">' +
+          '<span>คะแนนความประพฤติปัจจุบัน</span><b>' + esc(behavior.currentScore) + '</b>' +
+          '<small>เริ่มต้น 100 · ' + esc(behDeltaTxt) + ' · ระดับ ' + behLabel + '</small>' +
+        '</div>' +
+        ((behavior.history || []).length
+          ? '<div class="timeline">' + behavior.history.slice().reverse().map((h) => '<div class="timeline-item ' + (h.change >= 0 ? 'plus' : 'minus') + '">' +
+            '<div class="ti-date">' + esc(h.date) + '</div>' +
+            '<div class="ti-action">' + esc(h.action) + '</div>' +
+            '<div class="flex justify-between gap-8"><span class="ti-meta">โดย ' + esc(h.evaluator || '-') + '</span><span class="ti-change ' + (h.change >= 0 ? 'plus' : 'minus') + '">' + (h.change >= 0 ? '+' : '') + esc(h.change) + ' คะแนน</span></div>' +
+          '</div>').join('') + '</div>'
+          : '<div class="empty-mini">ไม่มีรายการปรับคะแนนความประพฤติ</div>');
+
+      const items = ch.items || [];
+      $('#charOverall').textContent = 'ภาพรวม: ' + (ch.overall || '-');
+      $('#characteristicsCard').innerHTML = items.length
+        ? '<div class="char-grid">' + items.map((it) => '<div class="char-item"><span>' + esc(it.name) + '</span><b>' + esc(it.score) + '</b></div>').join('') + '</div>'
+        : '<div class="empty-mini">ยังไม่มีข้อมูลคุณลักษณะอันพึงประสงค์</div>';
+
+      /* -------- กิจกรรมพัฒนาผู้เรียน (ผ./มผ.) -------- */
+      const devYear = activeTermKey.split('-')[0];
+      const devTerm = activeTermKey.split('-')[1];
+      const actList = store.getStudentActivities(student, devYear, devTerm);
+      const actPassed = actList.filter((a) => a.result === 'ผ.').length;
+      const overallEl = $('#activityDevOverall');
+      if (overallEl) overallEl.textContent = 'ผ่าน ' + actPassed + '/' + actList.length + ' กิจกรรม';
+      const actCard = $('#activityDevCard');
+      if (actCard) {
+        actCard.innerHTML = actList.length
+          ? activityCardsHTML(actList, { subtitle: 'ผลการประเมินกิจกรรมพัฒนาผู้เรียน ภาคเรียนที่ ' + devTerm })
+          : '<div class="empty-mini">ยังไม่มีข้อมูลกิจกรรมพัฒนาผู้เรียนในภาคเรียนนี้</div>';
+      }
+
+      const compLabels = {
+        communication: 'ความสามารถในการสื่อสาร',
+        thinking: 'ความสามารถในการคิด',
+        problemSolving: 'ความสามารถในการแก้ปัญหา',
+        lifeSkills: 'ความสามารถในการใช้ทักษะชีวิต',
+        techUse: 'ความสามารถในการใช้เทคโนโลยี'
+      };
+      const comp = ch.competencies || {};
+      const rta = ch.readingThinkingAnalysis || {};
+      $('#competenciesCard').innerHTML =
+        '<div class="comp-list">' + Object.keys(compLabels).map((k) =>
+          '<div class="comp-row"><span>' + esc(compLabels[k]) + '</span><b>' + esc(comp[k] || '-') + '</b></div>'
+        ).join('') + '</div>' +
+        '<div style="margin-top:16px;padding-top:14px;border-top:1px dashed #e2e8f0">' +
+          '<div style="font-size:0.72rem;font-weight:800;color:#64748b;letter-spacing:0.4px;margin-bottom:8px">การอ่าน คิดวิเคราะห์ และเขียนสื่อความ</div>' +
+          '<div class="comp-list">' +
+            '<div class="comp-row"><span>การอ่าน</span><b>' + esc(rta.reading || '-') + '</b></div>' +
+            '<div class="comp-row"><span>การคิดวิเคราะห์</span><b>' + esc(rta.thinking || '-') + '</b></div>' +
+            '<div class="comp-row"><span>การเขียนสื่อความ</span><b>' + esc(rta.writing || '-') + '</b></div>' +
+            '<div class="comp-row"><span>ภาพรวม</span><b>' + esc(rta.overall || '-') + '</b></div>' +
+          '</div>' +
+        '</div>';
+      $('#developmentComment').innerHTML =
+        '<div class="teacher-comment" style="border-left-color:#f59e0b;background:linear-gradient(100deg,#fffbeb,#fef3c7);color:#92400e;margin-bottom:14px">' +
+          '<b style="color:#b45309">ข้อเสนอแนะจากครูประจำชั้น</b>' + esc(ch.comment || contextTermData.homeroomComment || 'ตั้งใจเรียน มีความประพฤติดี') +
+        '</div>' +
+        '<div class="teacher-comment"><b>บันทึกของสถานศึกษา</b>' + esc(contextTermData.homeroomComment || 'เข้าร่วมกิจกรรมของโรงเรียนอย่างสม่ำเสมอ') + '</div>' +
+        '<div class="flex gap-8 mt-16 wrap"><a class="btn btn-outline btn-sm" target="_blank" href="' + printUrl('pp4') + '">พิมพ์ ปพ.4</a>' +
+        '<a class="btn btn-outline btn-sm" target="_blank" href="' + printUrl('pp6') + '">พิมพ์ ปพ.6</a></div>';
+      $('#devPrintPP4').href = printUrl('pp4');
+
+      /* ------------------------ documents ------------------------ */
+      const DOC_TYPES = [
+        { type: 'pp1', code: 'ปพ.1', title: 'ระเบียนแสดงผลการเรียน', desc: 'ผลการเรียนรายวิชา หน่วยกิต และ GPA สะสมทุกระดับชั้น', color: '#4f46e5', soft: '#eef2ff', grad: 'linear-gradient(90deg,#6366f1,#8b5cf6)', icon: 'file' },
+        { type: 'pp2', code: 'ปพ.2', title: 'ใบแสดงวุฒิการศึกษา', desc: 'ประกาศนียบัตรรับรองการสำเร็จการศึกษา พร้อมตราประทับ', color: '#059669', soft: '#ecfdf5', grad: 'linear-gradient(90deg,#10b981,#059669)', icon: 'award' },
+        { type: 'pp4', code: 'ปพ.4', title: 'รายงานผลการพัฒนาคุณภาพ', desc: 'คุณลักษณะอันพึงประสงค์ สมรรถนะ และผลการพัฒนารายบุคคล', color: '#db2777', soft: '#fdf2f8', grad: 'linear-gradient(90deg,#ec4899,#db2777)', icon: 'chart' },
+        { type: 'pp6', code: 'ปพ.6', title: 'สมุดรายงานประจำตัวนักเรียน', desc: 'สมุดรายงานผลการเรียน พฤติกรรม และเวลาเรียน', color: '#d97706', soft: '#fffbeb', grad: 'linear-gradient(90deg,#f59e0b,#d97706)', icon: 'book' },
+        { type: 'pp7', code: 'ปพ.7', title: 'ใบรับรองผลการศึกษา (ชั่วคราว)', desc: 'ใบรับรองผลการศึกษาสำหรับใช้สมัครศึกษาต่อหรือขอทุน', color: '#7c3aed', soft: '#f5f3ff', grad: 'linear-gradient(90deg,#8b5cf6,#7c3aed)', icon: 'shield' },
+        { type: 'pp8', code: 'ปพ.8', title: 'ระเบียนสะสม', desc: 'ประวัติการศึกษา พัฒนาการ คุณลักษณะ และผลการเรียนตลอดหลักสูตร', color: '#c026d3', soft: '#fdf4ff', grad: 'linear-gradient(90deg,#e879f9,#c026d3)', icon: 'award' },
+        { type: 'pp9', code: 'ปพ.9', title: 'หนังสือรับรองการเป็นนักเรียน', desc: 'หนังสือรับรองสถานภาพการเป็นนักเรียนสำหรับสมัครศึกษาต่อหรือขอทุน', color: '#1e3a8a', soft: '#eff6ff', grad: 'linear-gradient(90deg,#1e40af,#1e3a8a)', icon: 'shield' },
+        { type: 'attendance-student', code: 'รายงาน', title: 'รายงานเวลาเรียนรายบุคคล', desc: 'สรุปการมาเรียนรายเดือนและประวัติการเช็คชื่อทั้งหมด', color: '#0d9488', soft: '#f0fdfa', grad: 'linear-gradient(90deg,#14b8a6,#0d9488)', icon: 'check' }
+      ];
+      $('#documentGrid').innerHTML = DOC_TYPES.map((d) =>
+        '<div class="student-doc-card" style="--doc-color:' + d.color + ';--doc-soft:' + d.soft + ';--doc-grad:' + d.grad + '">' +
+          '<div class="sdc-top"><span class="sdc-ico">' + docIcon(d.icon) + '</span><span class="sdc-code">' + esc(d.code) + '</span></div>' +
+          '<h4>' + esc(d.title) + '</h4><p>' + esc(d.desc) + '</p>' +
+          '<div class="sdc-actions"><a class="btn btn-outline btn-sm" target="_blank" href="' + printUrl(d.type, d.type === 'attendance-student' ? { year: attCtx.year, term: attCtx.term } : {}) + '">' +
+            docIcon('file').replace('width="19" height="19"', 'width="14" height="14"') + ' เปิด / พิมพ์</a></div>' +
+        '</div>').join('');
+
+      const myDocs = store.getDocuments().filter((d) => String(d.targetId || '') === String(student.id));
+      $('#docHistoryCount').textContent = myDocs.length + ' รายการ';
+      $('#docHistoryList').innerHTML = myDocs.length
+        ? myDocs.slice(0, 8).map((d) => '<div class="doc-history-row"><span class="dh-ico">' + docIcon('file') + '</span>' +
+            '<span class="dh-main"><b>' + esc(d.title || d.type) + '</b><small>' + esc(thaiDateTime(d.issuedAt)) + ' · โดย ' + esc(d.issuedBy || '-') + '</small></span>' +
+            '<a class="btn btn-outline btn-sm" target="_blank" href="' + printUrl(d.type, { year: d.year || ctx.year, term: d.term || ctx.semester }) + '">พิมพ์ซ้ำ</a></div>').join('')
+        : '<div class="empty-mini">ยังไม่มีประวัติการออกเอกสาร<br>สามารถเปิดพิมพ์เอกสารจากด้านบนได้ทันที</div>';
+
+      /* ------------------------ keyboard tabs ------------------------ */
+      document.addEventListener('keydown', (e) => {
+        if (e.target && /input|select|textarea/i.test(e.target.tagName)) return;
+        const order = ['overview', 'grades', 'attendance', 'development', 'clubs', 'documents'];
+        const cur = order.findIndex((k) => panels[k].classList.contains('active'));
+        if (e.key === 'ArrowRight') switchTab(order[(cur + 1) % order.length]);
+        else if (e.key === 'ArrowLeft') switchTab(order[(cur - 1 + order.length) % order.length]);
+      });
+    })();
+  </script>
+</body>
+</html>

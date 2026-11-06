@@ -1,0 +1,73 @@
+{
+  "id": "./",
+  "name": "ระบบบริหารจัดการสถานศึกษา SMS",
+  "short_name": "SMS โรงเรียน",
+  "description": "ระบบบริหารจัดการสถานศึกษา งานวิชาการ เช็คชื่อ ตารางสอน ปพ.1–ปพ.9 ประเมินผล ชุมนุม และพอร์ทัลนักเรียน ใช้งานได้แบบออฟไลน์",
+  "lang": "th",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#f4f6fb",
+  "theme_color": "#4f46e5",
+  "categories": ["education", "productivity"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "เช็คชื่อประจำวัน",
+      "short_name": "เช็คชื่อ",
+      "description": "เปิดหน้าจอเช็คชื่อนักเรียนรายวัน",
+      "url": "./admin.html#attendance",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "จัดตารางสอน",
+      "short_name": "ตารางสอน",
+      "description": "ระบบจัดตารางเรียน/ตารางสอนอัจฉริยะ",
+      "url": "./admin.html#timetable",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "พอร์ทัลนักเรียน",
+      "short_name": "นักเรียน",
+      "description": "ตรวจผลการเรียน ตารางเรียน และชุมนุม",
+      "url": "./student.html",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "ชุมนุมและกิจกรรม",
+      "short_name": "ชุมนุม",
+      "description": "เลือกชุมนุมและติดตามกิจกรรม",
+      "url": "./club-community.html",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

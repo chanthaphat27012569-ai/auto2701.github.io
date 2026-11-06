@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ระบบบริหารจัดการสถานศึกษา · แผงควบคุมผู้ดูแล</title>
+<meta name="description" content="ระบบบริหารจัดการสถานศึกษา เช็คชื่อ ออกรายงานการเช็คชื่อ และเอกสาร ปพ.1–ปพ.9">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SMS โรงเรียน">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="SMS โรงเรียน">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Itim&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/itim-thai.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/itim-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=3.9.10">
+<link rel="stylesheet" href="css/admin.css?v=3.9.10">
+<link rel="stylesheet" href="css/modules.css?v=3.9.10">
+</head>
+<body class="admin-body">
+
+<div class="app-shell">
+  <!-- ================= Sidebar ================= -->
+  <aside class="app-sidebar" id="appSidebar">
+    <a class="sidebar-brand" href="index.html">
+      <span class="sidebar-logo" id="sidebarLogo"></span>
+      <span class="sidebar-brand-text">
+        <strong>SMS School</strong>
+        <span>ระบบบริหารจัดการสถานศึกษา</span>
+      </span>
+    </a>
+
+    <div class="sidebar-school">
+      <span class="dot-live"></span>
+      <div>
+        <small>สถานศึกษาปัจจุบัน</small>
+        <strong id="sidebarSchoolName">โรงเรียนอนุบาลสาธิตวิทยาการ</strong>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" id="sidebarNav">
+      <div class="nav-group-label">ภาพรวม</div>
+      <button type="button" class="sidebar-link active" data-module="dashboard">
+        <span class="nav-ico" data-icon="dashboard"></span><span class="nav-text">แดชบอร์ด</span>
+      </button>
+
+      <div class="nav-group-label">เวลาเรียน</div>
+      <button type="button" class="sidebar-link" data-module="attendance">
+        <span class="nav-ico" data-icon="check"></span><span class="nav-text">เช็คชื่อประจำวัน</span>
+      </button>
+      <button type="button" class="sidebar-link" data-module="attendance-reports">
+        <span class="nav-ico" data-icon="chart"></span><span class="nav-text">รายงานการเช็คชื่อ</span>
+      </button>
+
+      <div class="nav-group-label">ทะเบียนและวิชาการ</div>
+      <button type="button" class="sidebar-link" data-module="students">
+        <span class="nav-ico" data-icon="users"></span><span class="nav-text">ข้อมูลนักเรียน</span>
+      </button>
+      <button type="button" class="sidebar-link" data-module="classes">
+        <span class="nav-ico" data-icon="building"></span><span class="nav-text">ชั้นเรียน</span>
+      </button>
+      <button type="button" class="sidebar-link" data-module="subjects">
+        <span class="nav-ico" data-icon="book"></span><span class="nav-text">รายวิชา</span>
+      </button>
+      <button type="button" class="sidebar-link" data-module="gradebook">
+        <span class="nav-ico" data-icon="edit"></span><span class="nav-text">บันทึกผลการเรียน (ปพ.5)</span>
+      </button>
+
+      <div class="nav-group-label">เอกสารและกิจกรรม</div>
+      <button type="button" class="sidebar-link" data-module="documents">
+        <span class="nav-ico" data-icon="file"></span><span class="nav-text">ศูนย์เอกสาร ปพ.1–9</span>
+        <span class="nav-badge" id="docCountBadge">0</span>
+      </button>
+      <button type="button" class="sidebar-link" data-module="activities">
+        <span class="nav-ico" data-icon="flag"></span><span class="nav-text">กิจกรรมนักเรียน</span>
+      </button>
+      <button type="button" class="sidebar-link" data-module="clubs">
+        <span class="nav-ico" data-icon="star"></span><span class="nav-text">ชุมนุม</span>
+      </button>
+
+      <div class="nav-group-label">ระบบ</div>
+      <button type="button" class="sidebar-link" data-module="users">
+        <span class="nav-ico" data-icon="shield"></span><span class="nav-text">ผู้ใช้งาน</span>
+      </button>
+      <button type="button" class="sidebar-link" data-module="settings">
+        <span class="nav-ico" data-icon="settings"></span><span class="nav-text">ตั้งค่าระบบ</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="sidebar-user">
+        <span class="avatar" id="sidebarUserAvatar">ผ</span>
+        <div class="sidebar-user-meta">
+          <strong id="sidebarUserName">ผู้ดูแลระบบ</strong>
+          <span id="sidebarUserRole">SuperAdmin</span>
+        </div>
+      </div>
+      <a href="index.html" class="sidebar-logout" data-icon-text="logout">
+        <span data-icon="logout"></span> ออกจากระบบ
+      </a>
+    </div>
+  </aside>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <!-- ================= Main ================= -->
+  <div class="app-main">
+    <header class="app-topbar">
+      <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="เปิดเมนู">
+        <span data-icon="menu"></span>
+      </button>
+      <div class="topbar-title">
+        <h1 id="pageTitle">แดชบอร์ด</h1>
+        <p id="pageSubtitle">ภาพรวมระบบบริหารสถานศึกษา</p>
+      </div>
+      <div class="topbar-actions">
+        <div class="academic-chip">
+          <span class="academic-dot"></span>
+          <span id="topAcademic">ปีการศึกษา 2569 · ภาคเรียนที่ 1</span>
+        </div>
+        <a href="student.html" class="btn btn-outline btn-sm" title="พอร์ทัลนักเรียน">
+          <span data-icon="user"></span><span>พอร์ทัลนักเรียน</span>
+        </a>
+        <button type="button" class="btn btn-soft btn-sm" id="quickScheduleBtn" title="จัดตารางเรียนให้นักเรียน">
+          <span data-icon="calendar"></span><span>จัดตารางเรียน</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" id="quickAttendBtn">
+          <span data-icon="check"></span><span>เช็คชื่อ</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="app-content">
+
+      <!-- ================= Dashboard ================= -->
+      <section class="module active" id="module-dashboard">
+        <div class="dash-hero">
+          <div class="hero-inner">
+            <div class="hero-copy">
+              <span class="hero-eyebrow"><span data-icon="sparkle"></span> ภาพรวมวันนี้ · <span id="heroDate"></span></span>
+              <h2>ยินดีต้อนรับกลับมา, <span id="heroName">ผู้ดูแลระบบ</span></h2>
+              <p>ระบบบริหารจัดการสถานศึกษาครบวงจร ตรวจสอบเวลาเรียน บันทึกผลการเรียน และออกเอกสารทางการศึกษา ปพ.1–ปพ.9 ได้ในที่เดียว</p>
+              <div class="hero-actions">
+                <button type="button" class="btn btn-white" data-go="attendance">
+                  <span data-icon="check"></span> เช็คชื่อวันนี้
+                </button>
+                <button type="button" class="btn btn-glass" data-go="documents">
+                  <span data-icon="file"></span> ออกเอกสาร ปพ.
+                </button>
+                <button type="button" class="btn btn-glass" id="heroScheduleBtn" data-go="timetable">
+                  <span data-icon="calendar"></span> จัดตารางเรียนให้นักเรียน
+                </button>
+              </div>
+            </div>
+            <div class="hero-badge-ring" id="heroRing" style="--ring:0%">
+              <div class="hero-badge-inner">
+                <strong id="heroAttendance">0%</strong>
+                <span>อัตรามาเรียน</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-grid" id="dashStats"></div>
+
+        <div class="dash-grid">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title"><span class="panel-ico" data-icon="chart"></span> แนวโน้มการมาเรียน</div>
+                <div class="panel-sub">10 วันเรียนล่าสุด · ภาพรวมทุกชั้นเรียน</div>
+              </div>
+              <span class="badge badge-green" id="trendBadge">—</span>
+            </div>
+            <div class="panel-body">
+              <div class="chart-bars" id="attendanceTrend"></div>
+              <div class="chart-legend mt-12">
+                <span><i class="legend-dot" style="background:#4f46e5"></i>อัตรามาเรียน (%)</span>
+                <span><i class="legend-dot" style="background:#10b981"></i>เป้าหมาย 90%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title"><span class="panel-ico" data-icon="award"></span> การกระจายระดับผลการเรียน</div>
+                <div class="panel-sub">ภาคเรียนปัจจุบัน · ทุกชั้นเรียน</div>
+              </div>
+            </div>
+            <div class="panel-body"><div class="grade-dist" id="gradeDistribution"></div></div>
+          </div>
+        </div>
+
+        <div class="dash-grid equal">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title"><span class="panel-ico" data-icon="building"></span> อัตรามาเรียนรายชั้น</div>
+                <div class="panel-sub">สะสมทั้งภาคเรียน</div>
+              </div>
+              <button type="button" class="btn btn-ghost btn-xs" data-go="attendance-reports">ดูรายงาน <span data-icon="arrowRight"></span></button>
+            </div>
+            <div class="panel-body"><div class="class-mini-list" id="classAttendanceList"></div></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title"><span class="panel-ico" data-icon="file"></span> เอกสารล่าสุด</div>
+                <div class="panel-sub">รายการออกเอกสารทางการศึกษา</div>
+              </div>
+              <button type="button" class="btn btn-ghost btn-xs" data-go="documents">ทั้งหมด <span data-icon="arrowRight"></span></button>
+            </div>
+            <div class="panel-body"><div class="doc-history" id="recentDocuments"></div></div>
+          </div>
+        </div>
+
+        <div class="dash-grid equal">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title"><span class="panel-ico" data-icon="check"></span> สรุปการเช็คชื่อล่าสุด</div>
+                <div class="panel-sub" id="latestAttendanceSub">—</div>
+              </div>
+              <span class="badge badge-blue" id="latestAttendanceBadge">—</span>
+            </div>
+            <div class="panel-body" id="latestAttendanceBody"></div>
+            <div class="panel-foot">
+              <span class="text-xs text-muted" id="latestAttendanceFoot">—</span>
+              <button type="button" class="btn btn-primary btn-sm" data-go="attendance">เปิดหน้าจอเช็คชื่อ</button>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title"><span class="panel-ico" data-icon="printer"></span> ทางลัดออกเอกสาร</div>
+                <div class="panel-sub">พิมพ์เอกสาร ปพ. และรายงานเวลาเรียน</div>
+              </div>
+            </div>
+            <div class="panel-body"><div class="print-links" id="quickPrintLinks"></div></div>
+          </div>
+        </div>
+
+        <div class="dash-grid equal">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title"><span class="panel-ico" data-icon="sparkle"></span> ทางลัดการทำงาน</div>
+                <div class="panel-sub">เข้าถึงงานที่ใช้บ่อยได้ในคลิกเดียว</div>
+              </div>
+            </div>
+            <div class="panel-body"><div class="quick-action-grid" id="dashQuickActions"></div></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title"><span class="panel-ico" data-icon="alert"></span> สรุปความประพฤติ</div>
+                <div class="panel-sub">คะแนนความดี–ความผิดล่าสุด</div>
+              </div>
+              <button type="button" class="btn btn-ghost btn-xs" data-go="behavior">ดูทั้งหมด <span data-icon="arrowRight"></span></button>
+            </div>
+            <div class="panel-body" id="dashBehaviorSummary"></div>
+          </div>
+        </div>
+
+        <div class="panel mt-16" id="dashTeacherPanel" style="display:none">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title"><span class="panel-ico" data-icon="user"></span> ข้อมูลครูผู้สอนของฉัน</div>
+              <div class="panel-sub">ฝ่าย กลุ่มสาระ ห้องประจำชั้น และรายวิชาที่รับผิดชอบ</div>
+            </div>
+          </div>
+          <div class="panel-body" id="dashTeacherBody"></div>
+        </div>
+      </section>
+
+      <!-- ================= Attendance ================= -->
+      <section class="module" id="module-attendance">
+        <div class="module-head">
+          <div>
+            <h2>เช็คชื่อประจำวัน</h2>
+            <p>บันทึกเวลาเรียนรายบุคคล พร้อมสรุปสถิติและบันทึกผู้ตรวจสอบ</p>
+          </div>
+          <div class="module-head-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="attPrevDay"><span data-icon="chevronLeft"></span> วันก่อนหน้า</button>
+            <button type="button" class="btn btn-outline btn-sm" id="attNextDay">วันถัดไป <span data-icon="chevronRight"></span></button>
+            <a class="btn btn-soft-green btn-sm" href="print.html?type=attendance-daily" target="_blank" id="attPrintLink">
+              <span data-icon="printer"></span> พิมพ์รายงานวันนี้
+            </a>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="filter-field">
+            <label>วันที่เช็คชื่อ</label>
+            <input type="date" class="input" id="attDate">
+          </div>
+          <div class="filter-field">
+            <label>ชั้นเรียน</label>
+            <select class="select" id="attClass"></select>
+          </div>
+          <div class="filter-field grow">
+            <label>ครูผู้บันทึก / ผู้ตรวจสอบ</label>
+            <input type="text" class="input" id="attTeacher" placeholder="ชื่อผู้บันทึก">
+          </div>
+          <div class="filter-field" style="min-width:auto">
+            <label>&nbsp;</label>
+            <button type="button" class="btn btn-outline btn-sm" id="attMarkAllPresent"><span data-icon="checkAll"></span> มาเรียนทุกคน</button>
+          </div>
+        </div>
+
+        <div class="attendance-layout">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title"><span class="panel-ico" data-icon="users"></span> <span id="attRosterTitle">รายชื่อนักเรียน</span></div>
+                <div class="panel-sub" id="attRosterSub">—</div>
+              </div>
+              <div class="attendance-summary-row" id="attSummaryPills"></div>
+            </div>
+            <div class="panel-body flush">
+              <div class="table-wrap">
+                <table class="roster-table" id="attRoster"></table>
+              </div>
+            </div>
+            <div class="panel-foot">
+              <span class="text-xs text-muted" id="attSaveMeta">ยังไม่บันทึกสำหรับวันนี้</span>
+              <div class="flex gap-8">
+                <button type="button" class="btn btn-outline btn-sm" id="attReset">คืนค่าเริ่มต้น</button>
+                <button type="button" class="btn btn-primary btn-sm" id="attSave"><span data-icon="save"></span> บันทึกการเช็คชื่อ</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="att-side-card">
+            <div class="att-side-panel">
+              <h4><span data-icon="pie"></span> สรุปเวลาเรียน</h4>
+              <div class="att-donut" id="attDonut" style="--p:0%">
+                <div class="att-donut-center">
+                  <strong id="attDonutValue">0%</strong>
+                  <span>มาเรียน</span>
+                </div>
+              </div>
+              <div class="att-breakdown" id="attBreakdown"></div>
+            </div>
+
+            <div class="att-side-panel">
+              <h4><span data-icon="note"></span> บันทึกเพิ่มเติม</h4>
+              <textarea class="textarea att-note" id="attNote" placeholder="หมายเหตุ เช่น นักเรียนเดินทางไปแข่งขัน ครูประจำชั้นแจ้งล่วงหน้า"></textarea>
+              <div class="att-meta-line mt-12" id="attMetaLine">ยังไม่มีประวัติการบันทึก</div>
+              <button type="button" class="btn btn-primary btn-block btn-sm mt-12" id="attSaveSide"><span data-icon="save"></span> บันทึกการเช็คชื่อ</button>
+            </div>
+
+            <div class="att-side-panel">
+              <h4><span data-icon="printer"></span> รายงานเวลาเรียน</h4>
+              <div class="print-links" id="attQuickPrints"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Attendance reports ================= -->
+      <section class="module" id="module-attendance-reports">
+        <div class="module-head">
+          <div>
+            <h2>รายงานการเช็คชื่อ</h2>
+            <p>สรุปเวลาเรียนรายบุคคล รายชั้นเรียน และรายวัน พร้อมพิมพ์เป็นเอกสาร</p>
+          </div>
+          <div class="module-head-actions">
+            <div class="report-tabs" id="attReportTabs">
+              <button type="button" class="report-tab active" data-report="monthly">รายเดือน</button>
+              <button type="button" class="report-tab" data-report="daily">รายวัน</button>
+              <button type="button" class="report-tab" data-report="student">รายบุคคล</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="filter-field">
+            <label>ชั้นเรียน</label>
+            <select class="select" id="repClass"></select>
+          </div>
+          <div class="filter-field">
+            <label>ปีการศึกษา</label>
+            <select class="select" id="repYear"></select>
+          </div>
+          <div class="filter-field">
+            <label>ภาคเรียน</label>
+            <select class="select" id="repTerm"></select>
+          </div>
+          <div class="filter-field" id="repMonthField">
+            <label>เดือน</label>
+            <select class="select" id="repMonth"></select>
+          </div>
+          <div class="filter-field" id="repDateField" style="display:none">
+            <label>วันที่</label>
+            <input type="date" class="input" id="repDate">
+          </div>
+          <div class="filter-spacer"></div>
+          <div class="filter-field" style="min-width:auto">
+            <label>&nbsp;</label>
+            <button type="button" class="btn btn-soft-green btn-sm" id="repPrint"><span data-icon="printer"></span> พิมพ์รายงาน</button>
+          </div>
+        </div>
+
+        <div id="attReportContent"></div>
+      </section>
+
+      <!-- ================= Students ================= -->
+      <section class="module" id="module-students">
+        <div class="module-head">
+          <div>
+            <h2>ข้อมูลนักเรียน</h2>
+            <p>ทะเบียนนักเรียน การค้นหา และข้อมูลส่วนบุคคล</p>
+          </div>
+          <div class="module-head-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="addStudentBtn"><span data-icon="plus"></span> เพิ่มนักเรียน</button>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="filter-field grow">
+            <label>ค้นหา</label>
+            <input type="search" class="input" id="stuSearch" placeholder="ค้นหาชื่อ นามสกุล รหัสนักเรียน...">
+          </div>
+          <div class="filter-field">
+            <label>ชั้นเรียน</label>
+            <select class="select" id="stuClass"></select>
+          </div>
+          <div class="filter-field">
+            <label>สถานะ</label>
+            <select class="select" id="stuStatus">
+              <option value="">ทั้งหมด</option>
+              <option value="กำลังศึกษาอยู่">กำลังศึกษาอยู่</option>
+              <option value="จำหน่าย">จำหน่าย</option>
+              <option value="ย้ายสถานศึกษา">ย้ายสถานศึกษา</option>
+              <option value="สำเร็จการศึกษา">สำเร็จการศึกษา</option>
+            </select>
+          </div>
+          <div class="filter-spacer"></div>
+          <div class="filter-field" style="min-width:auto">
+            <label>&nbsp;</label>
+            <button type="button" class="btn btn-outline btn-sm" id="exportStudentsBtn"><span data-icon="download"></span> ส่งออก JSON</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title"><span class="panel-ico" data-icon="users"></span> ทะเบียนนักเรียน</div>
+            <span class="badge badge-brand" id="studentsCountBadge">0 คน</span>
+          </div>
+          <div class="panel-body flush"><div class="data-table-wrap" style="border:none;border-radius:0"><table class="admin-table" id="studentsTable"></table></div></div>
+        </div>
+      </section>
+
+      <!-- ================= Classes ================= -->
+      <section class="module" id="module-classes">
+        <div class="module-head">
+          <div>
+            <h2>ชั้นเรียน</h2>
+            <p>จัดการห้องเรียน ครูประจำชั้น และจำนวนนักเรียน</p>
+          </div>
+          <div class="module-head-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="addClassBtn"><span data-icon="plus"></span> เพิ่มชั้นเรียน</button>
+          </div>
+        </div>
+        <div class="grid-3" id="classesGrid"></div>
+      </section>
+
+      <!-- ================= Subjects ================= -->
+      <section class="module" id="module-subjects">
+        <div class="module-head">
+          <div>
+            <h2>รายวิชา</h2>
+            <p>โครงสร้างหลักสูตร เวลาเรียน และหน่วยกิต</p>
+          </div>
+          <div class="module-head-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="assignTeachersBtn"><span data-icon="users"></span> มอบหมายครูผู้สอน</button>
+            <button type="button" class="btn btn-primary btn-sm" id="addSubjectBtn"><span data-icon="plus"></span> เพิ่มรายวิชา</button>
+          </div>
+        </div>
+        <div class="filter-bar">
+          <div class="filter-field grow">
+            <label>ค้นหารายวิชา</label>
+            <input type="search" class="input" id="subjSearch" placeholder="ค้นหารหัสวิชา หรือชื่อวิชา...">
+          </div>
+          <div class="filter-field">
+            <label>หมวดวิชา</label>
+            <select class="select" id="subjCategory"><option value="">ทั้งหมด</option></select>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title"><span class="panel-ico" data-icon="book"></span> รายการรายวิชา</div>
+            <span class="badge badge-brand" id="subjectCountBadge">0 วิชา</span>
+          </div>
+          <div class="panel-body flush"><div class="table-container" style="border:none;box-shadow:none;border-radius:0"><table class="admin-table" id="subjectsTable"></table></div></div>
+        </div>
+      </section>
+
+      <!-- ================= Gradebook ================= -->
+      <section class="module" id="module-gradebook">
+        <div class="module-head">
+          <div>
+            <h2>บันทึกผลการเรียน (ปพ.5)</h2>
+            <p>บันทึกคะแนนรายวิชา ระบบคำนวณระดับผลการเรียนและ GPA อัตโนมัติ</p>
+          </div>
+          <div class="module-head-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="gbAssign"><span data-icon="users"></span> มอบหมายรายวิชา</button>
+            <button type="button" class="btn btn-soft-green btn-sm" id="gbPrint"><span data-icon="printer"></span> พิมพ์ ปพ.5</button>
+          </div>
+        </div>
+        <div class="filter-bar">
+          <div class="filter-field">
+            <label>ชั้นเรียน</label>
+            <select class="select" id="gbClass"></select>
+          </div>
+          <div class="filter-field">
+            <label>ปีการศึกษา</label>
+            <select class="select" id="gbYear"></select>
+          </div>
+          <div class="filter-field">
+            <label>ภาคเรียน</label>
+            <select class="select" id="gbTerm"></select>
+          </div>
+          <div class="filter-spacer"></div>
+          <div class="filter-field" style="min-width:auto">
+            <label>&nbsp;</label>
+            <button type="button" class="btn btn-outline btn-sm" id="gbReload"><span data-icon="refresh"></span> โหลดใหม่</button>
+          </div>
+          <div class="filter-field" style="min-width:auto">
+            <label>&nbsp;</label>
+            <button type="button" class="btn btn-primary btn-sm" id="gbSave"><span data-icon="save"></span> บันทึกคะแนน</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title"><span class="panel-ico" data-icon="edit"></span> ตารางบันทึกคะแนน</div>
+              <div class="panel-sub" id="gbSub">—</div>
+            </div>
+            <div class="flex gap-8 wrap">
+              <span class="badge badge-green">80+ = 4.0</span>
+              <span class="badge badge-blue">70–79 = 3.0</span>
+              <span class="badge badge-amber">50–59 = 1.0</span>
+              <span class="badge badge-rose">ต่ำกว่า 50 = 0</span>
+            </div>
+          </div>
+          <div class="panel-body flush"><div class="gradebook-scroll" id="gradebookWrap"></div></div>
+        </div>
+      </section>
+
+      <!-- ================= Documents ================= -->
+      <section class="module" id="module-documents">
+        <div class="module-head">
+          <div>
+            <h2>ศูนย์เอกสาร ปพ.1–ปพ.9</h2>
+            <p>ออกเอกสารทางการศึกษา พิมพ์ และบันทึกประวัติการออกเอกสาร</p>
+          </div>
+          <div class="module-head-actions">
+            <span class="badge badge-green"><span data-icon="shield"></span> ออกโดยนายทะเบียน</span>
+          </div>
+        </div>
+
+        <div class="doc-grid" id="docGrid"></div>
+
+        <div class="panel mt-20">
+          <div class="panel-head">
+            <div class="panel-title"><span class="panel-ico" data-icon="clock"></span> ประวัติการออกเอกสาร</div>
+            <span class="badge badge-brand" id="docHistoryCount">0 รายการ</span>
+          </div>
+          <div class="panel-body"><div class="doc-history" id="docHistory"></div></div>
+        </div>
+      </section>
+
+      <!-- ================= Activities ================= -->
+      <section class="module" id="module-activities">
+        <div class="module-head">
+          <div>
+            <h2>กิจกรรมนักเรียน</h2>
+            <p>เช็คชื่อกิจกรรมหน้าเสาธง ลูกเสือ เนตรนารี และกิจกรรมพัฒนาผู้เรียน</p>
+          </div>
+          <div class="module-head-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="addActivityBtn"><span data-icon="plus"></span> เพิ่มกิจกรรม</button>
+          </div>
+        </div>
+        <div class="grid-3" id="activitiesGrid"></div>
+      </section>
+
+      <!-- ================= Clubs ================= -->
+      <section class="module" id="module-clubs">
+        <div class="module-head">
+          <div>
+            <h2>ชุมนุม</h2>
+            <p>จัดการชุมนุม สมาชิก ประกาศข่าวสาร และผลกิจกรรมพัฒนาผู้เรียน (ผ./มผ.)</p>
+          </div>
+          <div class="module-head-actions">
+            <a href="club-community.html" class="btn btn-outline btn-sm" target="_blank"><span data-icon="external"></span> หน้าชุมนุมนักเรียน</a>
+            <button type="button" class="btn btn-primary btn-sm" id="addClubBtn"><span data-icon="plus"></span> เพิ่มชุมนุม</button>
+          </div>
+        </div>
+        <div class="module-tabs" id="clubTabs" role="tablist">
+          <button type="button" class="module-tab active" data-club-tab="clubs" role="tab" aria-selected="true">
+            <span data-icon="users"></span> ชุมนุมและสมาชิก
+          </button>
+          <button type="button" class="module-tab" data-club-tab="activity" role="tab" aria-selected="false">
+            <span data-icon="flag"></span> กิจกรรมพัฒนาผู้เรียน (ผ./มผ.)
+          </button>
+        </div>
+        <div id="clubTabClubs">
+          <div class="grid-3" id="clubsGrid"></div>
+        </div>
+        <div id="clubTabActivity" hidden>
+          <div class="actdev-wrap" id="actDevPanel"></div>
+        </div>
+      </section>
+
+      <!-- ================= Users ================= -->
+      <section class="module" id="module-users">
+        <div class="module-head">
+          <div>
+            <h2>ผู้ใช้งานระบบ</h2>
+            <p>บัญชีผู้ดูแล ครู และเจ้าหน้าที่ทะเบียน</p>
+          </div>
+          <div class="module-head-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="addUserBtn"><span data-icon="plus"></span> เพิ่มผู้ใช้งาน</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title"><span class="panel-ico" data-icon="shield"></span> บัญชีผู้ใช้งาน</div>
+            <span class="badge badge-brand" id="usersCountBadge">0 บัญชี</span>
+          </div>
+          <div class="panel-body flush"><div class="table-container" style="border:none;box-shadow:none;border-radius:0"><table class="admin-table" id="usersTable"></table></div></div>
+        </div>
+      </section>
+
+      <!-- ================= Settings ================= -->
+      <section class="module" id="module-settings">
+        <div class="module-head">
+          <div>
+            <h2>ตั้งค่าระบบ</h2>
+            <p>ข้อมูลสถานศึกษา ปีการศึกษา และการจัดการฐานข้อมูล</p>
+          </div>
+        </div>
+
+        <div class="settings-layout">
+          <nav class="settings-nav" id="settingsNav">
+            <button type="button" class="active" data-settings="school"><span data-icon="building"></span> ข้อมูลโรงเรียน</button>
+            <button type="button" data-settings="academic"><span data-icon="calendar"></span> ปีการศึกษา</button>
+            <button type="button" data-settings="grading"><span data-icon="award"></span> เกณฑ์การประเมิน</button>
+            <button type="button" data-settings="data"><span data-icon="database"></span> ฐานข้อมูล</button>
+          </nav>
+
+          <div>
+            <div class="settings-panel active" id="settings-school">
+              <div class="panel">
+                <div class="panel-head"><div class="panel-title"><span class="panel-ico" data-icon="building"></span> ข้อมูลสถานศึกษา</div></div>
+                <div class="panel-body">
+                  <form id="schoolInfoForm">
+                    <div class="form-grid">
+                      <div class="field span-2"><label class="field-label">ชื่อสถานศึกษา (ไทย)</label><input class="input" name="name" required></div>
+                      <div class="field span-2"><label class="field-label">ชื่อสถานศึกษา (อังกฤษ)</label><input class="input" name="nameEn"></div>
+                      <div class="field span-2">
+                        <label class="field-label">โลโก้สถานศึกษา</label>
+                        <div class="logo-upload">
+                          <div class="school-logo-preview" id="schoolLogoPreview"></div>
+                          <div class="logo-upload-main">
+                            <input type="file" class="input" id="schoolLogoFile" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+                            <p class="text-xs text-muted">ใช้แสดงบนหัวรายงาน เอกสาร ปพ. และหน้าจอระบบ แนะนำไฟล์ PNG พื้นหลังโปร่งใส</p>
+                            <button type="button" class="btn btn-outline btn-sm" id="schoolLogoRemove">ลบโลโก้</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="field"><label class="field-label">สังกัด</label><input class="input" name="affiliation"></div>
+                      <div class="field"><label class="field-label">สำนักงานเขตพื้นที่การศึกษา</label><input class="input" name="areaOffice" placeholder="เช่น สำนักงานเขตพื้นที่การศึกษามัธยมศึกษา..."></div>
+                      <div class="field span-2"><label class="field-label">ที่อยู่</label><input class="input" name="address"></div>
+                      <div class="field"><label class="field-label">โทรศัพท์</label><input class="input" name="phone"></div>
+                      <div class="field"><label class="field-label">อีเมล</label><input class="input" name="email" type="email"></div>
+                      <div class="field"><label class="field-label">เว็บไซต์</label><input class="input" name="website"></div>
+                      <div class="field"><label class="field-label">รหัสสถานศึกษา</label><input class="input" name="schoolCode"></div>
+                      <div class="field span-2"><div class="form-section-title"><span></span> ผู้บริหารสถานศึกษา</div></div>
+                      <div class="field"><label class="field-label">ชื่อผู้อำนวยการ</label><input class="input" name="director"></div>
+                      <div class="field"><label class="field-label">ตำแหน่งผู้อำนวยการ</label><input class="input" name="directorTitle"></div>
+                      <div class="field span-2"><label class="field-label">รองผู้อำนวยการสถานศึกษา 4 ฝ่าย <span class="field-hint">ไม่บังคับเลือก หากโรงเรียนไม่มีรองผู้อำนวยการสามารถปล่อยว่างไว้ได้</span></label></div>
+                      <div class="field"><label class="field-label">รองผู้อำนวยการโรงเรียนฝ่ายวิชาการ</label><input class="input" name="deputyAcademic"></div>
+                      <div class="field"><label class="field-label">รองผู้อำนวยการโรงเรียนฝ่ายงบประมาณ</label><input class="input" name="deputyBudget"></div>
+                      <div class="field"><label class="field-label">รองผู้อำนวยการโรงเรียนฝ่ายบุคคล</label><input class="input" name="deputyPersonnel"></div>
+                      <div class="field"><label class="field-label">รองผู้อำนวยการโรงเรียนฝ่ายบริหารทั่วไป</label><input class="input" name="deputyGeneral"></div>
+                      <div class="field"><label class="field-label">นายทะเบียน</label><input class="input" name="registrar"></div>
+                      <div class="field"><label class="field-label">หัวหน้าฝ่ายวิชาการ</label><input class="input" name="academicHead"></div>
+                    </div>
+                    <div class="flex justify-between items-center mt-20 wrap gap-10">
+                      <span class="text-xs text-muted">ข้อมูลนี้จะแสดงบนเอกสาร ปพ. ทุกฉบับ</span>
+                      <button type="submit" class="btn btn-primary"><span data-icon="save"></span> บันทึกข้อมูลโรงเรียน</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-panel" id="settings-academic">
+              <div class="panel">
+                <div class="panel-head"><div class="panel-title"><span class="panel-ico" data-icon="calendar"></span> ปีการศึกษาและภาคเรียน</div></div>
+                <div class="panel-body">
+                  <div class="form-grid">
+                    <div class="field">
+                      <label class="field-label">ปีการศึกษา (พ.ศ.)</label>
+                      <select class="select" id="setYear"></select>
+                    </div>
+                    <div class="field">
+                      <label class="field-label">ภาคเรียน</label>
+                      <select class="select" id="setTerm">
+                        <option value="1">ภาคเรียนที่ 1</option>
+                        <option value="2">ภาคเรียนที่ 2</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="issue-preview mt-16">
+                    ปีการศึกษาที่ตั้งไว้จะใช้เป็นค่าเริ่มต้นของแดชบอร์ด รายงานการเช็คชื่อ และการออกเอกสาร ปพ.
+                  </div>
+                  <div class="flex justify-between items-center mt-16 wrap gap-10">
+                    <span class="text-xs text-muted" id="academicHint">—</span>
+                    <button type="button" class="btn btn-primary" id="saveAcademic"><span data-icon="save"></span> บันทึกปีการศึกษา</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel mt-16">
+                <div class="panel-head"><div class="panel-title"><span class="panel-ico" data-icon="flag"></span> วันหยุดและวันสำคัญ</div></div>
+                <div class="panel-body" id="holidayList"></div>
+              </div>
+            </div>
+
+            <div class="settings-panel" id="settings-grading">
+              <div class="panel">
+                <div class="panel-head"><div class="panel-title"><span class="panel-ico" data-icon="award"></span> เกณฑ์การตัดเกรด</div></div>
+                <div class="panel-body">
+                  <div id="gradeScaleList"></div>
+                  <div class="issue-preview mt-16">
+                    เกณฑ์มาตรฐาน: คะแนน 80 ขึ้นไปได้ 4.0 · 75–79 ได้ 3.5 · 70–74 ได้ 3.0 · 65–69 ได้ 2.5 · 60–64 ได้ 2.0 · 55–59 ได้ 1.5 · 50–54 ได้ 1.0 · ต่ำกว่า 50 ได้ 0
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-panel" id="settings-data">
+              <div class="panel">
+                <div class="panel-head"><div class="panel-title"><span class="panel-ico" data-icon="database"></span> จัดการฐานข้อมูล</div></div>
+                <div class="panel-body">
+                  <div class="grid-2">
+                    <div class="field">
+                      <label class="field-label">ส่งออกข้อมูลทั้งหมด</label>
+                      <p class="text-xs text-muted mb-8">ดาวน์โหลดข้อมูลโรงเรียน นักเรียน เวลาเรียน และเอกสารเป็นไฟล์ JSON</p>
+                      <button type="button" class="btn btn-outline" id="exportAllBtn"><span data-icon="download"></span> ส่งออก JSON</button>
+                    </div>
+                    <div class="field">
+                      <label class="field-label">นำเข้าข้อมูล</label>
+                      <p class="text-xs text-muted mb-8">เลือกไฟล์ JSON ที่ส่งออกจากระบบเพื่อกู้คืนข้อมูล</p>
+                      <input type="file" class="input" id="importFile" accept="application/json">
+                    </div>
+                  </div>
+                  <div style="border-top:1px solid var(--line);margin-top:18px;padding-top:18px">
+                    <div class="flex justify-between items-center wrap gap-10">
+                      <div>
+                        <div class="fw-700" style="color:#b91c1c">รีเซ็ตข้อมูลทั้งระบบ</div>
+                        <p class="text-xs text-muted">ลบข้อมูลที่แก้ไขทั้งหมด และสร้างข้อมูลตัวอย่างใหม่ 48 คน</p>
+                      </div>
+                      <button type="button" class="btn btn-danger" id="resetDataBtn"><span data-icon="trash"></span> รีเซ็ตข้อมูล</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ================= Generic admin modal ================= -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal-card admin-modal-card" id="adminModalCard">
+    <div class="modal-card-head">
+      <h3 id="adminModalTitle">รายละเอียด</h3>
+      <button type="button" class="modal-close-btn" id="adminModalClose" aria-label="ปิด">✕</button>
+    </div>
+    <div class="modal-card-body" id="adminModalBody"></div>
+    <div class="modal-card-foot" id="adminModalFoot"></div>
+  </div>
+</div>
+
+<div class="adm-toast-stack" id="admToastStack"></div>
+
+<script src="js/data.js?v=3.9.10"></script>
+<script src="js/modal.js?v=3.9.10"></script>
+<script src="js/admin.js?v=3.9.10"></script>
+</body>
+</html>

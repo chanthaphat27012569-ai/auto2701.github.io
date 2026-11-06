@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ระบบบริหารจัดการสถานศึกษา · เช็คชื่อ ออกเอกสาร ปพ.1–ปพ.9 และรายงานผลการเรียน">
+  <title>เข้าสู่ระบบ · ระบบบริหารจัดการสถานศึกษา</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SMS โรงเรียน">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="SMS โรงเรียน">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/itim-thai.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/itim-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=3.9.10">
+  <link rel="stylesheet" href="css/portal.css?v=3.9.10">
+</head>
+<body class="login-page">
+
+  <div class="login-orb login-orb-1" aria-hidden="true"></div>
+  <div class="login-orb login-orb-2" aria-hidden="true"></div>
+  <div class="login-orb login-orb-3" aria-hidden="true"></div>
+  <div class="login-grid" aria-hidden="true"></div>
+
+  <main class="login-shell">
+    <!-- ================= Brand showcase ================= -->
+    <section class="login-brand-panel">
+      <div class="brand-topline">
+        <div class="brand-badge" data-school-logo></div>
+        <div class="brand-name-wrap">
+          <span class="brand-kicker">SMART SCHOOL MANAGEMENT</span>
+          <h2 class="brand-school-name" data-school-name>ระบบบริหารจัดการสถานศึกษา</h2>
+        </div>
+      </div>
+
+      <div class="brand-hero">
+        <span class="hero-eyebrow"><i></i> ระบบเดียว ครบทุกงานโรงเรียน</span>
+        <h1 class="hero-title">เรียนดี ดูแลครบ<br><span>จบในระบบเดียว</span></h1>
+        <p class="hero-desc">
+          บริหารข้อมูลนักเรียน เช็คชื่อประจำวัน ออกรายงานเวลาเรียน
+          และออกเอกสารทางการศึกษา ปพ.1 – ปพ.9 ได้ในคลิกเดียว
+        </p>
+      </div>
+
+      <div class="brand-features">
+        <div class="feature-pill">
+          <span class="fp-icon fp-indigo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </span>
+          <span><b>เช็คชื่ออัจฉริยะ</b><small>รายวัน · รายเดือน · รายบุคคล</small></span>
+        </div>
+        <div class="feature-pill">
+          <span class="fp-icon fp-pink">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+          </span>
+          <span><b>เอกสาร ปพ.1 – ปพ.9</b><small>พิมพ์ได้ทันที มาตรฐาน A4</small></span>
+        </div>
+        <div class="feature-pill">
+          <span class="fp-icon fp-emerald">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-6"/></svg>
+          </span>
+          <span><b>รายงานผลการเรียน</b><small>เกรด GPA และผลพัฒนา</small></span>
+        </div>
+      </div>
+
+      <div class="brand-stats">
+        <div class="brand-stat">
+          <b class="num" data-stat-students>—</b>
+          <span>นักเรียน</span>
+        </div>
+        <div class="brand-stat">
+          <b class="num" data-stat-classes>—</b>
+          <span>ชั้นเรียน</span>
+        </div>
+        <div class="brand-stat">
+          <b class="num" data-stat-attendance>—</b>
+          <span>อัตรามาเรียน</span>
+        </div>
+        <div class="brand-stat">
+          <b class="num" data-stat-docs>—</b>
+          <span>เอกสารที่ออก</span>
+        </div>
+      </div>
+
+      <div class="brand-footer">
+        <span class="online-dot"></span>
+        <span>ระบบพร้อมใช้งาน · ข้อมูลบันทึกในเครื่องของคุณอย่างปลอดภัย</span>
+      </div>
+    </section>
+
+    <!-- ================= Login panel ================= -->
+    <section class="login-form-panel">
+      <div class="login-card animate-pop">
+        <div class="login-card-head">
+          <div class="login-mini-logo" data-school-logo></div>
+          <div>
+            <h2>ยินดีต้อนรับ</h2>
+            <p>เลือกประเภทผู้ใช้งานเพื่อเข้าสู่ระบบ</p>
+          </div>
+        </div>
+
+        <div class="login-tabs" role="tablist" aria-label="ประเภทผู้ใช้งาน">
+          <button type="button" class="login-tab active" id="tabStaff" role="tab" aria-selected="true" aria-controls="staffForm">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            เจ้าหน้าที่
+          </button>
+          <button type="button" class="login-tab" id="tabStudent" role="tab" aria-selected="false" aria-controls="studentForm">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 2 2.5 3 6 3s6-1 6-3v-5"/></svg>
+            นักเรียน / ผู้ปกครอง
+          </button>
+        </div>
+
+        <!-- Staff login -->
+        <form id="staffForm" class="login-form" autocomplete="on">
+          <label class="login-field">
+            <span class="lf-label">ชื่อผู้ใช้งาน</span>
+            <span class="lf-input-wrap">
+              <svg class="lf-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input id="loginUsername" class="input" type="text" name="username" placeholder="กรอกชื่อผู้ใช้งาน" value="admin" autocomplete="username" required>
+            </span>
+          </label>
+          <label class="login-field">
+            <span class="lf-label">รหัสผ่าน</span>
+            <span class="lf-input-wrap">
+              <svg class="lf-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input id="loginPassword" class="input" type="password" name="password" placeholder="กรอกรหัสผ่าน" value="1234" autocomplete="current-password" required>
+              <button type="button" class="pwd-toggle" id="pwdToggle" aria-label="แสดงรหัสผ่าน">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </span>
+          </label>
+          <div class="login-error" id="staffError" role="alert"></div>
+          <button type="submit" class="btn btn-primary login-submit" id="staffSubmit">
+            <span>เข้าสู่ระบบ</span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+          <div class="login-demo" style="flex-direction:column;align-items:flex-start;gap:8px">
+            <div class="flex items-center gap-6">
+              <span class="demo-badge">เลือกสวมบทบาททดสอบ (Quick Login)</span>
+              <span class="text-xs text-muted">รหัสผ่าน <b>1234</b> ทุกบัญชี</span>
+            </div>
+            <div class="quick-chips wrap" id="demoRoleChips" style="gap:5px">
+              <button type="button" class="chip" data-quick-user="admin" title="ผู้ดูแลระบบ (Admin)">🛡️ ผู้ดูแลระบบ</button>
+              <button type="button" class="chip" data-quick-user="teacher.deputy" title="ครู + รองผู้อำนวยการ (สอนด้วย + อนุมัติได้)">👨‍🏫 ครู + รอง ผอ.</button>
+              <button type="button" class="chip" data-quick-user="academic" title="รองผู้อำนวยการฝ่ายวิชาการ">🎓 รอง ผอ.วิชาการ</button>
+              <button type="button" class="chip" data-quick-user="staff.affairs" title="เจ้าหน้าที่ฝ่ายกิจการนักเรียน">📋 เจ้าหน้าที่กิจการ</button>
+              <button type="button" class="chip" data-quick-user="staff.academic" title="เจ้าหน้าที่ฝ่ายวิชาการ">📚 เจ้าหน้าที่วิชาการ</button>
+              <button type="button" class="chip" data-quick-user="staff.personnel" title="เจ้าหน้าที่ฝ่ายบริหารบุคคล">👥 เจ้าหน้าที่บุคคล</button>
+              <button type="button" class="chip" data-quick-user="teacher.sunee" title="ครูสุนีย์ ใจดี (ครูประจำชั้น/ผู้สอน)">👩‍🏫 ครูผู้สอน</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Student lookup -->
+        <form id="studentForm" class="login-form hidden" autocomplete="off">
+          <label class="login-field">
+            <span class="lf-label">ค้นหานักเรียน</span>
+            <span class="lf-input-wrap">
+              <svg class="lf-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+              <input id="studentQuery" class="input" type="search" placeholder="เลขประจำตัว หรือชื่อ-สกุล" autocomplete="off">
+            </span>
+          </label>
+          <div class="quick-chips" id="studentChips">
+            <span class="quick-label">ตัวอย่าง:</span>
+            <button type="button" class="chip" data-student-id="1001">1001</button>
+            <button type="button" class="chip" data-student-id="1002">1002</button>
+            <button type="button" class="chip" data-student-id="1009">1009</button>
+            <button type="button" class="chip" data-student-id="1017">1017</button>
+          </div>
+          <div class="student-results" id="studentResults" aria-live="polite"></div>
+          <div class="login-error" id="studentError" role="alert"></div>
+          <button type="submit" class="btn btn-green login-submit" id="studentSubmit">
+            <span>เปิดพอร์ทัลนักเรียน</span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+          <p class="login-hint">
+            ผู้ปกครองสามารถตรวจดูผลการเรียน เวลาเรียน และเอกสาร ปพ. ของบุตรหลานได้โดยไม่ต้องใช้รหัสผ่าน
+          </p>
+        </form>
+
+        <div class="login-links">
+          <a href="club-community.html">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            หน้าชุมนุมและกิจกรรม
+          </a>
+          <span class="login-version">v3.0.0</span>
+        </div>
+      </div>
+
+      <p class="login-copyright">© 2026 <span data-school-name>ระบบบริหารจัดการสถานศึกษา</span> · พัฒนาด้วยหัวใจเพื่อการศึกษาไทย</p>
+    </section>
+  </main>
+
+  <script src="js/data.js?v=3.9.10"></script>
+  <script>
+    (function () {
+      'use strict';
+      const store = window.smsStore;
+      const SESSION_KEY = 'sms_session_v3';
+      const STUDENT_SESSION_KEY = 'sms_student_session_v3';
+      const $ = (s) => document.querySelector(s);
+
+      /* ------------------------ school identity ------------------------ */
+      const info = store.getSchoolInfo();
+      const stats = store.getDashboardStats();
+      document.querySelectorAll('[data-school-name]').forEach((el) => {
+        if (el.classList.contains('brand-school-name')) el.textContent = info.name || 'ระบบบริหารจัดการสถานศึกษา';
+      });
+      document.querySelectorAll('[data-school-logo]').forEach((el) => {
+        el.innerHTML = info.logo || '';
+      });
+      const setText = (sel, value) => { const el = $(sel); if (el) el.textContent = value; };
+      setText('[data-stat-students]', stats.students.toLocaleString('th-TH'));
+      setText('[data-stat-classes]', stats.classes.toLocaleString('th-TH'));
+      setText('[data-stat-attendance]', (Math.round(stats.attendancePercent * 10) / 10).toFixed(1) + '%');
+      setText('[data-stat-docs]', stats.documents.toLocaleString('th-TH'));
+
+      /* ------------------------ tabs ------------------------ */
+      const tabStaff = $('#tabStaff');
+      const tabStudent = $('#tabStudent');
+      const staffForm = $('#staffForm');
+      const studentForm = $('#studentForm');
+      const staffError = $('#staffError');
+      const studentError = $('#studentError');
+
+      function selectTab(which) {
+        const staff = which === 'staff';
+        tabStaff.classList.toggle('active', staff);
+        tabStudent.classList.toggle('active', !staff);
+        tabStaff.setAttribute('aria-selected', String(staff));
+        tabStudent.setAttribute('aria-selected', String(!staff));
+        staffForm.classList.toggle('hidden', !staff);
+        studentForm.classList.toggle('hidden', staff);
+        staffError.textContent = '';
+        studentError.textContent = '';
+        if (!staff) setTimeout(() => $('#studentQuery').focus(), 120);
+        else setTimeout(() => $('#loginUsername').focus(), 120);
+      }
+      tabStaff.addEventListener('click', () => selectTab('staff'));
+      tabStudent.addEventListener('click', () => selectTab('student'));
+
+      /* ------------------------ password toggle ------------------------ */
+      const pwd = $('#loginPassword');
+      const pwdToggle = $('#pwdToggle');
+      pwdToggle.addEventListener('click', () => {
+        const show = pwd.type === 'password';
+        pwd.type = show ? 'text' : 'password';
+        pwdToggle.classList.toggle('active', show);
+        pwdToggle.setAttribute('aria-label', show ? 'ซ่อนรหัสผ่าน' : 'แสดงรหัสผ่าน');
+      });
+
+      /* ------------------------ staff login ------------------------ */
+      staffForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        staffError.textContent = '';
+        const username = $('#loginUsername').value.trim();
+        const password = $('#loginPassword').value.trim();
+        const submit = $('#staffSubmit');
+        if (!username || !password) {
+          staffError.textContent = 'กรุณากรอกชื่อผู้ใช้งานและรหัสผ่าน';
+          return;
+        }
+        submit.disabled = true;
+        submit.querySelector('span').textContent = 'กำลังเข้าสู่ระบบ…';
+        setTimeout(() => {
+          const user = store.authenticate(username, password);
+          if (!user) {
+            staffError.textContent = 'ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง';
+            submit.disabled = false;
+            submit.querySelector('span').textContent = 'เข้าสู่ระบบ';
+            $('#loginPassword').focus();
+            $('#loginPassword').select();
+            return;
+          }
+          const session = Object.assign({}, user, {
+            loginAt: new Date().toISOString()
+          });
+          delete session.password;
+          try {
+            localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+            localStorage.setItem(STUDENT_SESSION_KEY, JSON.stringify({
+              id: store.getAllStudents()[0] ? store.getAllStudents()[0].id : '',
+              loginAt: new Date().toISOString()
+            }));
+          } catch (err) {
+            staffError.textContent = 'ไม่สามารถบันทึกข้อมูลการเข้าสู่ระบบได้';
+            submit.disabled = false;
+            submit.querySelector('span').textContent = 'เข้าสู่ระบบ';
+            return;
+          }
+          submit.querySelector('span').textContent = 'สำเร็จ กำลังพาไป…';
+          setTimeout(() => { location.href = 'admin.html'; }, 380);
+        }, 420);
+      });
+
+      /* ------------------------ student lookup ------------------------ */
+      function studentName(s) { return ((s.prefix || '') + s.firstname + ' ' + s.lastname).trim(); }
+      function classOf(s) { return s.className || ((s.levelShort || '') + '/' + (s.room || '')); }
+      function findStudents(query) {
+        const q = String(query || '').trim().toLowerCase();
+        if (!q) return [];
+        return store.getAllStudents().filter((s) => {
+          const full = studentName(s).toLowerCase();
+          return String(s.id) === q || String(s.studentNumber || '').toLowerCase() === q ||
+            String(s.id).includes(q) || full.includes(q);
+        }).slice(0, 8);
+      }
+      function goStudent(student) {
+        try {
+          localStorage.setItem(STUDENT_SESSION_KEY, JSON.stringify({
+            id: student.id, name: studentName(student), className: classOf(student),
+            loginAt: new Date().toISOString()
+          }));
+        } catch (err) { /* ignore */ }
+        location.href = 'student.html?id=' + encodeURIComponent(student.id);
+      }
+      const results = $('#studentResults');
+      function renderResults(list) {
+        if (!list.length) { results.innerHTML = ''; return; }
+        results.innerHTML = list.map((s) =>
+          '<button type="button" class="student-result" data-pick="' + s.id + '">' +
+            '<span class="sr-avatar">' + String(s.firstname || '?').charAt(0) + '</span>' +
+            '<span class="sr-main"><b>' + studentName(s) + '</b><small>' + classOf(s) + ' · เลขที่ ' + (s.studentNumber || s.id) + '</small></span>' +
+            '<span class="sr-go">เปิดพอร์ทัล →</span>' +
+          '</button>'
+        ).join('');
+        results.querySelectorAll('[data-pick]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const s = store.getStudentById(btn.getAttribute('data-pick'));
+            if (s) goStudent(s);
+          });
+        });
+      }
+      studentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        studentError.textContent = '';
+        const query = $('#studentQuery').value;
+        const found = findStudents(query);
+        if (!found.length) {
+          results.innerHTML = '';
+          studentError.textContent = 'ไม่พบนักเรียนที่ตรงกับ “' + query.trim() + '” กรุณาตรวจสอบเลขประจำตัวหรือชื่อ-สกุล';
+          return;
+        }
+        if (found.length === 1 || String(found[0].id) === query.trim()) {
+          goStudent(found[0]);
+          return;
+        }
+        renderResults(found);
+        studentError.textContent = '';
+      });
+      $('#studentQuery').addEventListener('input', () => {
+        studentError.textContent = '';
+        const q = $('#studentQuery').value.trim();
+        if (q.length < 2) { results.innerHTML = ''; return; }
+        renderResults(findStudents(q).slice(0, 5));
+      });
+      document.querySelectorAll('[data-student-id]').forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const s = store.getStudentById(chip.getAttribute('data-student-id'));
+          if (s) goStudent(s);
+        });
+      });
+
+      document.querySelectorAll('[data-quick-user]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const u = btn.getAttribute('data-quick-user');
+          $('#loginUsername').value = u;
+          $('#loginPassword').value = '1234';
+          selectTab('staff');
+          $('#staffForm').dispatchEvent(new Event('submit', { cancelable: true }));
+        });
+      });
+
+      /* ------------------------ shortcuts ------------------------ */
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          selectTab('student');
+          $('#studentQuery').focus();
+        }
+      });
+
+      if (localStorage.getItem(SESSION_KEY)) {
+        try {
+          const session = JSON.parse(localStorage.getItem(SESSION_KEY));
+          if (session && session.name) {
+            $('#loginUsername').value = session.username || 'admin';
+          }
+        } catch (err) { /* ignore */ }
+      }
+    })();
+  </script>
+</body>
+</html>
